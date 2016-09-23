@@ -67,6 +67,7 @@
     <Compile Include="AddOperation.xaml.cs">
       <DependentUpon>AddOperation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationProduct.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
@@ -121,7 +122,6 @@
       <DependentUpon>201608262056521_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationType.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Operations.xaml.cs">

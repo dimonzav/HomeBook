@@ -60,15 +60,17 @@
                 {
                     OperationId = new Guid().ToString(),
                     Name = operationModel.Name,
-                    TypeId = operationModel.TypeId,
+                    OperationTypeId = operationModel.OperationTypeId,
                     Time = DateTime.Now,
                     Sum = operationModel.Sum
                 };
 
-                operationModel.Products.ToList().ForEach(a => operation.Products.Add((Product)a));
+                //operationModel.Products.ToList().ForEach(a => operation.Products.Add((Product)a));
 
-                this.context.OperationProducts.AddRange(operation.Products);
+                //this.context.OperationProducts.AddRange(operation.Products);
             }
+
+            return false;
         }
 
         public bool AddProduct(string name)

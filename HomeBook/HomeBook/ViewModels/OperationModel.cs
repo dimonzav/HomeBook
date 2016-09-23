@@ -10,7 +10,7 @@
 
     public class OperationModel
     {
-        public int OperationId { get; set; }
+        public string OperationId { get; set; }
 
         [Required]
         public string Name { get; set; }

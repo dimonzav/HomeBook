@@ -52,6 +52,25 @@
             return null;
         }
 
+        public bool AddOperation(OperationModel operationModel)
+        {
+            if(operationModel != null)
+            {
+                Operation operation = new Operation
+                {
+                    OperationId = new Guid().ToString(),
+                    Name = operationModel.Name,
+                    TypeId = operationModel.TypeId,
+                    Time = DateTime.Now,
+                    Sum = operationModel.Sum
+                };
+
+                operationModel.Products.ToList().ForEach(a => operation.Products.Add((Product)a));
+
+                this.context.OperationProducts.AddRange(operation.Products);
+            }
+        }
+
         public bool AddProduct(string name)
         {
             var product = new Product { Name = name };

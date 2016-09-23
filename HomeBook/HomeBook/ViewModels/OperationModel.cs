@@ -16,11 +16,11 @@
         public string Name { get; set; }
 
         [Required]
-        public int TypeId { get; set; }
+        public int OperationTypeId { get; set; }
 
         public virtual OperationTypeModel OperationTypeModel { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<OperationProductModel> Products { get; set; }
 
         [Required]
         public DateTime Time { get; set; }

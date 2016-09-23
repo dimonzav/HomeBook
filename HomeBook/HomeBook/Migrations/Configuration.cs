@@ -14,7 +14,7 @@ namespace HomeBook.Migrations
         {
             this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = true;
-            this.CommandTimeout = 60000; AutomaticMigrationsEnabled = false;
+            this.CommandTimeout = 60000;
         }
 
         protected override void Seed(HomeBookContext context)
@@ -55,11 +55,11 @@ namespace HomeBook.Migrations
         {
             List<Operation> operations = new List<Operation>
             {
-                new Operation { OperationId = 1, TypeId = 2, Name = "Buy tomatoes", Time = new DateTime (2016, 08, 25), Sum = 25.5 },
-                new Operation { OperationId = 2, TypeId = 2, Name = "Buy potatoes", Time = new DateTime (2016, 07, 20), Sum = 20.50 },
-                new Operation { OperationId = 3, TypeId = 2, Name = "Buy bread", Time = new DateTime (2016, 08, 24), Sum = 12.25 },
-                new Operation { OperationId = 4, TypeId = 2, Name = "Buy butter", Time = new DateTime (2016, 08, 15), Sum = 25.5 },
-                new Operation { OperationId = 5, TypeId = 2, Name = "Buy meat", Time = new DateTime (2016, 08, 21), Sum = 260.00 }
+                new Operation { OperationId = 1, OperationTypeId = 2, Name = "Buy tomatoes", Time = new DateTime (2016, 08, 25), Sum = 25.5 },
+                new Operation { OperationId = 2, OperationTypeId = 2, Name = "Buy potatoes", Time = new DateTime (2016, 07, 20), Sum = 20.50 },
+                new Operation { OperationId = 3, OperationTypeId = 2, Name = "Buy bread", Time = new DateTime (2016, 08, 24), Sum = 12.25 },
+                new Operation { OperationId = 4, OperationTypeId = 2, Name = "Buy butter", Time = new DateTime (2016, 08, 15), Sum = 25.5 },
+                new Operation { OperationId = 5, OperationTypeId = 2, Name = "Buy meat", Time = new DateTime (2016, 08, 21), Sum = 260.00 }
             };
 
             return operations.ToArray(); 

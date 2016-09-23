@@ -13,9 +13,10 @@
                 <GradientStop Color="#FFFFA2A2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label x:Name="label" Content="Type name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,60,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
-        <Button x:Name="btnAddNewProduct" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Margin="110,185,0,0" Foreground="#FFE0B030" Height="30" FontFamily="Cooper Black" FontSize="16"/>
-        <TextBox x:Name="tbNewProductName" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Margin="50,115,0,0" FontFamily="Cooper Black"/>
+        <Label x:Name="label" Content="Enter product name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="60,60,0,0" Foreground="#FFE0B030" Background="Transparent" FontFamily="Cooper Black" FontSize="16"/>
+        <Button x:Name="btnSaveProduct" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="60,201,0,0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" Click="btnSaveProduct_Click"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="159,201,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16" Click="btnCancel_Click"/>
+        <TextBox x:Name="tbProductName" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" Margin="45,119,0,0" FontFamily="Cooper Black"/>
 
     </Grid>
 </Window>

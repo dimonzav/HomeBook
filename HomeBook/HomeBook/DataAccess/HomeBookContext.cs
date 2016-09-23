@@ -20,5 +20,7 @@
         public virtual DbSet<OperationType> OperationsTypes { get; set; }
 
         public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<OperationProduct> OperationProducts { get; set; }
     }
 }

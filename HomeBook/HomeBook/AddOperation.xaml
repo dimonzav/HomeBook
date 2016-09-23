@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeBook"
         mc:Ignorable="d"
-        Title="Add Operation" Height="500" Width="400">
+        Title="Add Operation" Height="500" Width="650">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,15 +13,16 @@
                 <GradientStop Color="#FFFFA2A2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Margin="89,42,0,0" Height="25"/>
-        <TextBox x:Name="tbOperationName" HorizontalAlignment="Left" Height="85" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Margin="89,113,0,0" FontFamily="Cooper Black"/>
-        <Label x:Name="label" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="89,80,0,0" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black"/>
-        <Label x:Name="label1" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="89,10,0,0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030"/>
-        <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="89,220,0,0" Height="23" Width="225" FirstDayOfWeek="Monday" SelectedDateFormat="Short"/>
-        <Label x:Name="label2" Content="Select a product" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="89,260,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
-        <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Margin="89,293,0,0"/>
-        <Label x:Name="label3" Content="Or add new" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="89,323,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
-        <Button x:Name="button" Content="Add product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="212,327,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="13.333"/>
-        <TextBox x:Name="tbSum" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Margin="89,369,0,0" FontFamily="Cooper Black" FontWeight="Bold"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Margin="56,43,0,0" Height="25"/>
+        <TextBox x:Name="tbOperationName" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="539" Margin="56,120,0,0" FontFamily="Cooper Black"/>
+        <Label x:Name="label" Content="Operation name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,92,0,0" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" RenderTransformOrigin="0.696,0.536"/>
+        <Label x:Name="label1" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,15,0,0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030"/>
+        <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,43,0,0" Height="23" Width="225" FirstDayOfWeek="Monday" SelectedDateFormat="Short"/>
+        <Button x:Name="btnAddProduct" Content="Add product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="56,181,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="13.333" Click="btnAddProduct_Click" Height="30"/>
+        <TextBox x:Name="tbSum" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Margin="370,339,0,0" FontFamily="Cooper Black" FontWeight="Bold"/>
+        <ListBox x:Name="lbOperationProducts" HorizontalAlignment="Left" Height="92" VerticalAlignment="Top" Width="539" Margin="56,216,0,0"/>
+        <Button x:Name="btnAddOpration" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="151,400,0,0" Foreground="#FFE0B33B" Height="30" FontFamily="Cooper Black" FontSize="16"/>
+        <Button x:Name="btnCancelAddOperation" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="370,400,0,0" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Height="30"/>
+        <Label x:Name="label4" Content="Total" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="306,336,0,0" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16"/>
     </Grid>
 </Window>

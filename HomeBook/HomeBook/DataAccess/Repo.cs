@@ -37,7 +37,7 @@
                     {
                         OperationId = operation.OperationId,
                         Name = operation.Name,
-                        TypeId = operation.TypeId,
+                        OperationTypeId = operation.OperationTypeId,
                         OperationTypeModel = new OperationTypeModel(operation.OperationType),
                         Time = operation.Time,
                         Sum = operation.Sum
@@ -50,6 +50,20 @@
             }
 
             return null;
+        }
+
+        public bool AddProduct(string name)
+        {
+            var product = new Product { Name = name };
+
+            this.context.Products.Add(product);
+
+            return this.context.SaveChanges() > 0;
+        }
+
+        public List<Product> GetProducts()
+        {
+            return this.context.Products.ToList();
         }
     }
 }

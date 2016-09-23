@@ -67,6 +67,7 @@
     <Compile Include="AddOperation.xaml.cs">
       <DependentUpon>AddOperation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\OperationProduct.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>
@@ -74,6 +75,7 @@
       <DependentUpon>OperationProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\OperationModel.cs" />
+    <Compile Include="ViewModels\OperationProductModel.cs" />
     <Compile Include="ViewModels\OperationTypeModel.cs" />
     <Page Include="AddOperation.xaml">
       <SubType>Designer</SubType>
@@ -147,6 +149,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\HomeBook.Models.Operation.datasource" />
+    <None Include="Properties\DataSources\HomeBook.Models.Product.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

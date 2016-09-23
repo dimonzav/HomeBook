@@ -16,14 +16,13 @@
         }
         [Key]
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OperationId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public int TypeId { get; set; }
+        public int OperationTypeId { get; set; }
 
         public virtual OperationType OperationType { get; set; }
 

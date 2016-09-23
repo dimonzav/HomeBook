@@ -32,5 +32,11 @@ namespace HomeBook
 
             dgOperagions.ItemsSource = operations;
         }
+
+        private void btnAddOperation_Click(object sender, RoutedEventArgs e)
+        {
+            AddOperation add = new AddOperation();
+            add.ShowDialog();
+        }
     }
 }

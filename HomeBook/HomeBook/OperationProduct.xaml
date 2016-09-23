@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeBook"
         mc:Ignorable="d"
-        Title="Operation Product" Height="300" Width="300">
+        Title="OperationProduct" Height="400" Width="500">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,7 +13,20 @@
                 <GradientStop Color="#FFFFA2A2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="79,65,0,0" Foreground="#FFFFA2A2" Background="Transparent"/>
+        <Label x:Name="label2" Content="Select a product" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,34,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
+        <ComboBox x:Name="cbProducts" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Margin="55,67,0,0" Height="25" SelectionChanged="cbProducts_SelectionChanged"/>
+        <Label x:Name="label3" Content="Or add new" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="331,34,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
+        <Button x:Name="btnAddProduct" Content="Add product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="333,67,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="13.333" Click="btnAddProduct_Click" Height="25"/>
+        <Button x:Name="btnAddOperationProduct" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="90,297,0,0" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Height="28" Click="btnAddOperationProduct_Click"/>
+        <Button x:Name="btnCanceAddProduct" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="270,297,0,0" FontSize="16" FontFamily="Cooper Black" Foreground="#FFE0B33B" Height="30" Click="btnCanceAddProduct_Click"/>
+        <TextBox x:Name="tbProductAmount" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="55,147,0,0" FontFamily="Cooper Black" FontSize="13.333" />
+        <TextBox x:Name="tbProductPrice" Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="270,149,0,0" FontFamily="Cooper Black" FontSize="13.333"/>
+        <TextBox x:Name="tbTotalSum" Text="{Binding Sum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="270,235,0,0" FontFamily="Cooper Black" FontSize="13.333"/>
+        <Label x:Name="label" Content="Amount" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,110,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
+        <Label x:Name="label1" Content="Price" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,110,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
+        <Label x:Name="label4" Content="Unit" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,202,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
+        <TextBox x:Name="tbProductUnit" Text="{Binding Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="55,235,0,0" FontFamily="Cooper Black" FontSize="13.333"/>
+        <Label x:Name="label5" Content="Sum" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,202,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
 
     </Grid>
 </Window>

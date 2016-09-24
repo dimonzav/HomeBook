@@ -30,5 +30,12 @@ namespace HomeBook
             operations.Show();
             this.Close();
         }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            Reports reports = new Reports();
+            reports.Show();
+            this.Close();
+        }
     }
 }

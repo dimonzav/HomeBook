@@ -26,7 +26,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnReport" Content="Reports" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="215,48,0,0" Height="100" BorderBrush="#FF785A5A" Foreground="Black" FontSize="24" FontFamily="Cooper Black">
+        <Button x:Name="btnReport" Content="Reports" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="215,48,0,0" Height="100" BorderBrush="#FF785A5A" Foreground="Black" FontSize="24" FontFamily="Cooper Black" Click="btnReport_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
             </Button.Effect>

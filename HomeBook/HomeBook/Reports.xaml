@@ -1,0 +1,44 @@
+﻿<Window x:Class="HomeBook.Reports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HomeBook"
+        mc:Ignorable="d"
+        Title="Reports" Height="500" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <CheckBox HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Product Operations</CheckBox>
+        <CheckBox HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">Salary</CheckBox>
+        <CheckBox HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">Costs</CheckBox>
+        <CheckBox HorizontalAlignment="Center" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center">Utilities expense</CheckBox>
+        <CheckBox HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center">Banks Operations</CheckBox>
+        <Label x:Name="labelFromDate" Content="From" Grid.Row="1" Grid.Column="0" Margin="10, 0, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+        <DatePicker x:Name="dpFrom" Grid.Row="1" Grid.Column="0" FirstDayOfWeek="Monday" SelectedDateFormat="Short" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,0,8" Width="138" />
+        <Label x:Name="labelToDate" Content="To" Grid.Row="1" Grid.Column="1" Margin="10, 0, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+        <DatePicker x:Name="dpTo" Grid.Row="1" Grid.Column="1" FirstDayOfWeek="Monday" SelectedDateFormat="Short" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,0,8" Width="138" />
+        <CheckBox HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">For all period</CheckBox>
+        <CheckBox HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center">Summary</CheckBox>
+        <Button x:Name="bntGetReport" Content="Get report" Grid.Row="1" Grid.Column="4" Margin="0,0,10,0"></Button>
+        <DataGrid x:Name="dgReports" Grid.Row="2" Grid.ColumnSpan="5" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type" Binding="{Binding OperationTypeModel.Name}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="220"></DataGridTextColumn>
+                <DataGridComboBoxColumn Header="Products" ItemsSource="{Binding Source=OperationProducts}" SelectedValueBinding="{Binding OperationProducts}" DisplayMemberPath="Name" Width="220"></DataGridComboBoxColumn>
+                <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" Width="150"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

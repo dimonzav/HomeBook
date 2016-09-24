@@ -55,11 +55,11 @@ namespace HomeBook.Migrations
         {
             List<Operation> operations = new List<Operation>
             {
-                new Operation { OperationId = "1", OperationTypeId = 2, Name = "Buy tomatoes", Time = new DateTime (2016, 08, 25), Sum = 25.5 },
-                new Operation { OperationId = "2", OperationTypeId = 2, Name = "Buy potatoes", Time = new DateTime (2016, 07, 20), Sum = 20.50 },
-                new Operation { OperationId = "3", OperationTypeId = 2, Name = "Buy bread", Time = new DateTime (2016, 08, 24), Sum = 12.25 },
-                new Operation { OperationId = "4", OperationTypeId = 2, Name = "Buy butter", Time = new DateTime (2016, 08, 15), Sum = 25.5 },
-                new Operation { OperationId = "5", OperationTypeId = 2, Name = "Buy meat", Time = new DateTime (2016, 08, 21), Sum = 260.00 }
+                new Operation { OperationId = "1", OperationTypeId = 2, Name = "Buy tomatoes", Date = new DateTime (2016, 08, 25), Sum = 25.5 },
+                new Operation { OperationId = "2", OperationTypeId = 2, Name = "Buy potatoes", Date = new DateTime (2016, 07, 20), Sum = 20.50 },
+                new Operation { OperationId = "3", OperationTypeId = 2, Name = "Buy bread", Date = new DateTime (2016, 08, 24), Sum = 12.25 },
+                new Operation { OperationId = "4", OperationTypeId = 2, Name = "Buy butter", Date = new DateTime (2016, 08, 15), Sum = 25.5 },
+                new Operation { OperationId = "5", OperationTypeId = 2, Name = "Buy meat", Date = new DateTime (2016, 08, 21), Sum = 260.00 }
             };
 
             return operations.ToArray(); 

@@ -5,6 +5,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Data.Entity.Validation;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -23,9 +24,30 @@
             this.context = _context;
         }
 
+        public List<OperationTypeModel> GetOperationTypes()
+        {
+            var typesDb = this.context.OperationsTypes.ToList();
+
+            List<OperationTypeModel> models = new List<OperationTypeModel>();
+
+            if (typesDb.Count > 0)
+            {
+                foreach (var type in typesDb)
+                {
+                    OperationTypeModel model = new OperationTypeModel(type);
+
+                    models.Add(model);
+                }
+
+                return models;
+            }
+
+            return null;
+        }
+
         public List<OperationModel> GetOperations()
         {
-            var operationsDb = this.context.Operations.Include("OperationType").ToList();
+            var operationsDb = this.context.Operations.Include("OperationType").Include(p => p.OperationProducts).ToList();
 
             List<OperationModel> operations = new List<OperationModel>();
 
@@ -39,9 +61,23 @@
                         Name = operation.Name,
                         OperationTypeId = operation.OperationTypeId,
                         OperationTypeModel = new OperationTypeModel(operation.OperationType),
-                        Time = operation.Time,
+                        Date = operation.Date,
                         Sum = operation.Sum
                     };
+
+                    List<OperationProductModel> tempList = new List<OperationProductModel>();
+
+                    if (operation.OperationProducts.Count > 0)
+                    {
+                        foreach (var product in operation.OperationProducts)
+                        {
+                            OperationProductModel productModel = new OperationProductModel(product);
+
+                            tempList.Add(productModel);
+                        }
+
+                        model.OperationProducts = tempList.ToArray();
+                    }
 
                     operations.Add(model);
                 }
@@ -58,16 +94,51 @@
             {
                 Operation operation = new Operation
                 {
-                    OperationId = new Guid().ToString(),
+                    OperationId = Guid.NewGuid().ToString(),
                     Name = operationModel.Name,
                     OperationTypeId = operationModel.OperationTypeId,
-                    Time = DateTime.Now,
+                    Date = DateTime.Now,
                     Sum = operationModel.Sum
                 };
 
-                //operationModel.Products.ToList().ForEach(a => operation.Products.Add((Product)a));
+                operationModel.OperationProducts.ToList().ForEach(a => operation.OperationProducts.Add((OperationProduct)a));
 
-                //this.context.OperationProducts.AddRange(operation.Products);
+                foreach (var product in operation.OperationProducts)
+                {
+                    product.OperationProductId = Guid.NewGuid().ToString();
+                }
+
+                try
+                {
+                    this.context.OperationProducts.AddRange(operation.OperationProducts);
+
+                    this.context.Operations.Add(operation);
+
+                    return this.context.SaveChanges() > 0;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine(
+                            "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name,
+                            eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine(
+                                "- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName,
+                                ve.ErrorMessage);
+                        }
+                    }
+
+                    throw;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
 
             return false;

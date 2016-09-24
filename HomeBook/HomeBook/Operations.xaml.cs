@@ -36,7 +36,14 @@ namespace HomeBook
         private void btnAddOperation_Click(object sender, RoutedEventArgs e)
         {
             AddOperation add = new AddOperation();
+            add.RefreshOperationsEvent += new AddOperation.RefreshDel(this.RefreshOperations);
             add.ShowDialog();
+        }
+
+        private void RefreshOperations()
+        {
+            dgOperagions.ItemsSource = this._repo.GetOperations();
+            dgOperagions.Items.Refresh();
         }
     }
 }

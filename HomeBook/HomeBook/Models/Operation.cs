@@ -11,7 +11,7 @@
     {
         public Operation()
         {
-            this.Products = new HashSet<Product>();
+            this.OperationProducts = new HashSet<OperationProduct>();
         }
         [Key]
         public string OperationId { get; set; }
@@ -24,12 +24,12 @@
 
         public virtual OperationType OperationType { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<OperationProduct> OperationProducts { get; set; }
 
         [Required]
-        public DateTime Time { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
-        public double Sum { get; set; }
+        public double? Sum { get; set; }
     }
 }

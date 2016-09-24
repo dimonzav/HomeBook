@@ -9,25 +9,19 @@
     public class OperationProductModel : INotifyPropertyChanged
     {
         private string name;
-        private int amount;
+        private double? amount;
         private string unit;
-        private double price;
-        private double sum;
+        private double? price;
+        private double? sum;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        public OperationProductModel(OperationProduct item)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        private void CalcSum()
-        {
-            Sum = amount * price;
-        }
+            this.Name = item.Name;
+            this.Amount = item.Amount;
+            this.Price = item.Price;
+            this.Unit = item.Unit;
+            this.Sum = item.Sum;
+        }        
 
         public string OperationProductId { get; set; }
 
@@ -43,7 +37,7 @@
         }
 
         [Required]
-        public int Amount
+        public double? Amount
         {
             get { return amount; }
             set
@@ -66,7 +60,7 @@
         }
 
         [Required]
-        public double Price
+        public double? Price
         {
             get { return price; }
             set
@@ -78,13 +72,30 @@
         }
 
         [Required]
-        public double Sum
+        public double? Sum
         {
             get { return sum; }
             set
             {
                 sum = value;
                 NotifyPropertyChanged();
+            }
+        }
+
+        public bool AllFieldsFilled => Name.IsCleanText() && Amount.IsCleanNumber() && Price.IsCleanNumber() && Unit.IsCleanText();
+
+        private void CalcSum()
+        {
+            Sum = amount * price;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 

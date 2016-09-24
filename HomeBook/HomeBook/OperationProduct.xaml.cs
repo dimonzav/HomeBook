@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HomeBook.DataAccess;
 using HomeBook.ViewModels;
+using HomeBook.Models;
 
 namespace HomeBook
 {
@@ -32,7 +33,7 @@ namespace HomeBook
             InitializeComponent();
 
             this._repo = new Repo();
-            this.operationProduct = new OperationProductModel();
+            this.operationProduct = this.DataContext as OperationProductModel;
 
             cbProducts.ItemsSource = this._repo.GetProducts();
             cbProducts.DisplayMemberPath = "Name";
@@ -53,13 +54,14 @@ namespace HomeBook
 
         private void cbProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string selectedProduct = cbProducts.SelectedItem as string;
-            this.operationProduct.Name = selectedProduct;
+            var selectedProduct = cbProducts.SelectedItem as Product;
+            this.operationProduct.Name = selectedProduct.Name;
         }
 
         private void btnAddOperationProduct_Click(object sender, RoutedEventArgs e)
         {
             this.AddProductEvent(operationProduct);
+            this.Close();
         }
 
         private void btnCanceAddProduct_Click(object sender, RoutedEventArgs e)

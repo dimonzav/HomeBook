@@ -3,9 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HomeBook"
+        xmlns:local="clr-namespace:HomeBook.ViewModels"
         mc:Ignorable="d"
         Title="Add Operation" Height="500" Width="650">
+    <Window.Resources>
+        <local:OperationModel x:Key="OperationModel" />
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding Source="{StaticResource OperationModel}" />
+    </Window.DataContext>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,16 +19,25 @@
                 <GradientStop Color="#FFFFA2A2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Margin="56,43,0,0" Height="25"/>
-        <TextBox x:Name="tbOperationName" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="539" Margin="56,120,0,0" FontFamily="Cooper Black"/>
+        <ComboBox x:Name="cbOperationType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Margin="56,43,0,0" Height="25" SelectionChanged="cbOperationType_SelectionChanged" />
+        <TextBox x:Name="tbOperationName" Text="{Binding Name}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="539" Margin="56,120,0,0" FontFamily="Cooper Black"/>
         <Label x:Name="label" Content="Operation name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,92,0,0" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" RenderTransformOrigin="0.696,0.536"/>
         <Label x:Name="label1" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,15,0,0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030"/>
-        <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,43,0,0" Height="23" Width="225" FirstDayOfWeek="Monday" SelectedDateFormat="Short"/>
+        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding Date}" VerticalAlignment="Top" Margin="370,43,0,0" Height="23" Width="225" FirstDayOfWeek="Monday" SelectedDateFormat="Short"/>
         <Button x:Name="btnAddProduct" Content="Add product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="56,181,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="13.333" Click="btnAddProduct_Click" Height="30"/>
-        <TextBox x:Name="tbSum" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Margin="370,339,0,0" FontFamily="Cooper Black" FontWeight="Bold"/>
-        <ListBox x:Name="lbOperationProducts" HorizontalAlignment="Left" Height="92" VerticalAlignment="Top" Width="539" Margin="56,216,0,0"/>
-        <Button x:Name="btnAddOpration" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="151,400,0,0" Foreground="#FFE0B33B" Height="30" FontFamily="Cooper Black" FontSize="16"/>
-        <Button x:Name="btnCancelAddOperation" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="370,400,0,0" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Height="30"/>
+        <TextBox x:Name="tbSum" Text="{Binding Sum}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Margin="370,339,0,0" FontFamily="Cooper Black" FontWeight="Bold"/>
+        <Button x:Name="btnAddOpration" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="151,400,0,0" Foreground="#FFE0B33B" Height="30" FontFamily="Cooper Black" FontSize="16" Click="btnAddOpration_Click"/>
+        <Button x:Name="btnCancelAddOperation" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="370,400,0,0" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Height="30" Click="btnCancelAddOperation_Click"/>
         <Label x:Name="label4" Content="Total" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="306,336,0,0" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16"/>
+        <DataGrid x:Name="dgOperationProducts" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,216,0,0" Height="101" Width="540" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="160" />
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="120" />
+                <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="60" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="100" />
+                <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" Width="98" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="label2" Content="Date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,15,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
     </Grid>
 </Window>

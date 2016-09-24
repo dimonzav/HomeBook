@@ -11,8 +11,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Type" Binding="{Binding OperationTypeModel.Name}" Width="150"></DataGridTextColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="250"></DataGridTextColumn>
-                <DataGridTextColumn Header="Time" Binding="{Binding Time}" Width="220"></DataGridTextColumn>
-                <DataGridComboBoxColumn Header="Products" Width="220"></DataGridComboBoxColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="220"></DataGridTextColumn>
+                <DataGridComboBoxColumn Header="Products" ItemsSource="{Binding Source=OperationProducts}" SelectedValueBinding="{Binding OperationProducts}" DisplayMemberPath="Name" Width="220"></DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" Width="150"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

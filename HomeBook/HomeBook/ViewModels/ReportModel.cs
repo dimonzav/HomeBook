@@ -15,6 +15,7 @@
         private bool _isCosts;
         private bool _isUtilities;
         private bool _isBank;
+        private bool _isForAllPeriod;
 
         public bool IsProductOperations
         {
@@ -70,6 +71,23 @@
                 NotifyPropertyChanged();
             }
         }
+
+        public bool IsForAllPeriod
+        {
+            get { return _isForAllPeriod; }
+            set
+            {
+                if (value == _isForAllPeriod) return;
+                _isForAllPeriod = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public DateTime From { get; set; }
+
+        public DateTime To { get; set; }
+
+        public bool IsSummary { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

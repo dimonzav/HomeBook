@@ -5,7 +5,7 @@
     using System.Windows;
     using System.Windows.Data;
 
-    public class ButtonIsEnabledConverter : IValueConverter
+    public class BoolTurnConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

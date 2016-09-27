@@ -67,7 +67,7 @@
     <Compile Include="AddOperation.xaml.cs">
       <DependentUpon>AddOperation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ButtonIsEnabledConverter.cs" />
+    <Compile Include="BoolTurnConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationProduct.cs" />

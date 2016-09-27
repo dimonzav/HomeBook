@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HomeBook.ViewModels;
 
 namespace HomeBook
 {
@@ -19,9 +20,17 @@ namespace HomeBook
     /// </summary>
     public partial class Reports : Window
     {
+        private ReportModel reportModel;
         public Reports()
         {
             InitializeComponent();
+
+            this.reportModel = this.DataContext as ReportModel;
+        }
+
+        private void bntGetReport_Click(object sender, RoutedEventArgs e)
+        {
+            var report = this.reportModel;
         }
     }
 }

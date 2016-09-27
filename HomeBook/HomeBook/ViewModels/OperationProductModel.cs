@@ -14,6 +14,10 @@
         private double? price;
         private double? sum;
 
+        public OperationProductModel()
+        {
+        }
+
         public OperationProductModel(OperationProduct item)
         {
             this.Name = item.Name;

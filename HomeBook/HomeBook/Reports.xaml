@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HomeBook"
         xmlns:localViews="clr-namespace:HomeBook.ViewModels"
         mc:Ignorable="d"
-        Title="Reports" Height="500" Width="1000">
+        Title="Reports" Height="500" Width="1000" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local:BoolTurnConverter x:Key="BoolTurnConverter" />
         <localViews:ReportModel x:Key="ReportModel" />

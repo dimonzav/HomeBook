@@ -157,5 +157,52 @@
         {
             return this.context.Products.ToList();
         }
+
+        public List<OperationModel> GetReportForOperations(ReportModel reportModel)
+        {
+            if (reportModel !=null)
+            {
+                List<Operation> operationsDb = new List<Operation>();
+
+                List<OperationModel> models = new List<OperationModel>();
+
+                var operationsQuery = Enumerable.Empty<Operation>().AsQueryable();
+
+                if (reportModel.IsProductOperations)
+                {
+                    if (reportModel.IsForAllPeriod)
+                    {
+                        operationsQuery = this.context.Operations.Where(o => o.OperationTypeId == 1);
+                    }
+                    else {
+                        if (reportModel.From != null)
+                        {
+                            operationsQuery = operationsQuery.Where(o => o.Date >= reportModel.From);
+                        }
+
+                        if (reportModel.To != null)
+                        {
+                            operationsQuery = operationsQuery.Where(o => o.Date <= reportModel.From);
+                        }
+                    }
+                }
+
+                operationsDb = operationsQuery.ToList();
+
+                if (operationsDb.Count() > 0)
+                {
+                    foreach (var op in operationsDb)
+                    {
+                        OperationModel model = new OperationModel(op);
+
+                        models.Add(model);
+                    }
+
+                    return models;
+                }
+            }
+
+            return null;
+        }
     }
 }

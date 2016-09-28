@@ -10,6 +10,10 @@
 
     public class OperationTypeModel
     {
+        public OperationTypeModel()
+        {
+        }
+
         public OperationTypeModel(OperationType type)
         {
             this.OperationTypeId = type.OperationTypeId;

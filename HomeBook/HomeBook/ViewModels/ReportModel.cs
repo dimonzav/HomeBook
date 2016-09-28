@@ -16,6 +16,25 @@
         private bool _isUtilities;
         private bool _isBank;
         private bool _isForAllPeriod;
+        private int _typeId = 1;
+
+        public ReportModel()
+        {
+            this.TypeId = 1;
+            this.From = DateTime.Now;
+            this.To = DateTime.Now;
+        }
+
+        public int TypeId
+        {
+            get { return _typeId; }
+            set
+            {
+                if (value == _typeId) return;
+                _typeId = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public bool IsProductOperations
         {
@@ -88,6 +107,8 @@
         public DateTime To { get; set; }
 
         public bool IsSummary { get; set; }
+
+        //public int TypeId { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

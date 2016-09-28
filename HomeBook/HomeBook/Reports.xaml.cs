@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HomeBook.ViewModels;
+using HomeBook.DataAccess;
 
 namespace HomeBook
 {
@@ -20,17 +21,22 @@ namespace HomeBook
     /// </summary>
     public partial class Reports : Window
     {
+        private Repo _repo;
         private ReportModel reportModel;
         public Reports()
         {
             InitializeComponent();
+
+            this._repo = new Repo();
 
             this.reportModel = this.DataContext as ReportModel;
         }
 
         private void bntGetReport_Click(object sender, RoutedEventArgs e)
         {
-            var report = this.reportModel;
+            var result = this._repo.GetReportForOperations(this.reportModel);
+
+            dgProdReports.ItemsSource = result;
         }
     }
 }

@@ -13,9 +13,32 @@
     public class OperationModel : INotifyPropertyChanged
     {
         private string name;
-        private int operationType;
+        private int operationTypeId;
         private DateTime date;
         private double? sum;
+
+        public OperationModel()
+        {
+        }
+
+        public OperationModel(Operation operation)
+        {
+            this.OperationTypeId = operation.OperationTypeId;
+            this.Name = operation.Name;
+            this.OperationTypeId = operation.OperationTypeId;
+            this.OperationTypeModel = new OperationTypeModel(operation.OperationType);
+            this.Date = operation.Date;
+            this.Sum = operation.Sum;
+            this.OperationProducts = new List<OperationProductModel>();
+
+            if(operation.OperationProducts.Count > 0)
+            {
+                foreach (var prod in operation.OperationProducts)
+                {
+                    this.OperationProducts.Add(new OperationProductModel(prod));
+                }
+            }
+        }
 
         public string OperationId { get; set; }
 
@@ -33,10 +56,10 @@
         [Required]
         public int OperationTypeId
         {
-            get { return operationType; }
+            get { return operationTypeId; }
             set
             {
-                operationType = value;
+                operationTypeId = value;
                 NotifyPropertyChanged();
             }
         }

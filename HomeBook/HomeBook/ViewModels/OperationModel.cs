@@ -12,11 +12,19 @@
 
     public class OperationModel : INotifyPropertyChanged
     {
-        private string name;
-        private int operationTypeId;
-        private DateTime date;
-        private double? sum;
-        private bool _isProductOperations;
+        private string _name;
+        private int _operationTypeId = 1;
+        private DateTime _date;
+        private double? _sum;
+        private double? _salaryAmount;
+        private int _currencyId;
+        private int _convertedCurrencyId;
+        private double _convertedValue;
+        private double _convertedSalary;
+        private int _utilityTypeId;
+        private int _bankOperationTypeId;
+        private int _bankTypeId;
+        private bool _isProductOperations = true;
         private bool _isSalary;
         private bool _isServiceOperations;
         private bool _isUtilities;
@@ -24,6 +32,7 @@
 
         public OperationModel()
         {
+            this.Date = DateTime.Now;
         }
 
         public OperationModel(Operation operation)
@@ -50,10 +59,11 @@
         [Required]
         public string Name
         {
-            get { return name; }
+            get { return _name; }
             set
             {
-                name = value;
+                if (value == _name) return;
+                _name = value;
                 NotifyPropertyChanged();
             }
         }
@@ -61,10 +71,12 @@
         [Required]
         public int OperationTypeId
         {
-            get { return operationTypeId; }
+            get { return _operationTypeId; }
             set
             {
-                operationTypeId = value;
+                if (value == _operationTypeId || value == 0) return;
+                _operationTypeId = value;
+                ChangeOperationType();
                 NotifyPropertyChanged();
             }
         }
@@ -76,21 +88,127 @@
         [Required]
         public DateTime Date
         {
-            get { return date; }
+            get { return _date; }
             set
             {
-                date = value;
+                if (value == _date) return;
+                _date = value;
                 NotifyPropertyChanged();
             }
         }
 
         [Required]
-        public double? Sum
+        public double? SalaryAmount
         {
-            get { return sum; }
+            get { return _salaryAmount; }
             set
             {
-                sum = value;
+                if (value == _salaryAmount) return;
+                _salaryAmount = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        [Required]
+        public int CurrencyId
+        {
+            get { return _currencyId; }
+            set
+            {
+                if (value == _currencyId) return;
+                _currencyId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public virtual Currency Currency { get; set; }
+
+        [Required]
+        public int ConvertedCurrencyId
+        {
+            get { return _convertedCurrencyId; }
+            set
+            {
+                if (value == _convertedCurrencyId) return;
+                _convertedCurrencyId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        [Required]
+        public double ConvertedValue
+        {
+            get { return _convertedValue; }
+            set
+            {
+                if (value == _convertedValue) return;
+                _convertedValue = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        [Required]
+        public double ConvertedSalary
+        {
+            get { return _convertedSalary; }
+            set
+            {
+                if (value == _convertedSalary) return;
+                _convertedSalary = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        [Required]
+        public int UtilityId
+        {
+            get { return _utilityTypeId; }
+            set
+            {
+                if (value == _utilityTypeId) return;
+                _utilityTypeId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public virtual Utility Utility { get; set; }
+
+        [Required]
+        public int BankOperationTypeId
+        {
+            get { return _bankOperationTypeId; }
+            set
+            {
+                if (value == _bankOperationTypeId) return;
+                _bankOperationTypeId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public virtual BankOperationType BankOperationType { get; set; }
+
+        [Required]
+        public int BankAccountId
+        {
+            get { return _bankTypeId; }
+            set
+            {
+                if (value == _bankTypeId) return;
+                _bankTypeId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public virtual BankAccount BankAccount { get; set; }
+
+        [Required]
+        public double? Sum
+        {
+            get { return _sum; }
+            set
+            {
+                if (value == _sum) return;
+                _sum = value;
                 NotifyPropertyChanged();
             }
         }
@@ -117,7 +235,7 @@
             }
         }
 
-        public bool IsServicesOperations
+        public bool IsServiceOperations
         {
             get { return _isServiceOperations; }
             set
@@ -159,5 +277,30 @@
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        public void ChangeOperationType()
+        {
+            this.IsProductOperations = this.IsServiceOperations = this.IsSalary = this.IsBank = this.IsUtilities = false;
+            if (this.OperationTypeId == 1)
+            {
+                this.IsProductOperations = true;
+            }
+            else if (this.OperationTypeId == 2)
+            {
+                this.IsServiceOperations = true;
+            }
+            else if (this.OperationTypeId == 3)
+            {
+                this.IsSalary = true;
+            }
+            else if (this.OperationTypeId == 4)
+            {
+                this.IsBank = true;
+            }
+            else
+            {
+                this.IsUtilities = true;
+            }
+        } 
     }
 }

@@ -26,5 +26,13 @@
         public virtual DbSet<Service> Services { get; set; }
 
         public virtual DbSet<OperationService> OperationServices { get; set; }
+
+        public virtual DbSet<Currency> Currencies { get; set; }
+
+        public virtual DbSet<Utility> Utilities { get; set; }
+
+        public virtual DbSet<BankOperationType> BankOperationTypes { get; set; }
+
+        public virtual DbSet<BankAccount> BankAccounts { get; set; }
     }
 }

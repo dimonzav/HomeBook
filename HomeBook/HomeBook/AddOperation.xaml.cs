@@ -38,6 +38,16 @@ namespace HomeBook
 
             cbOperationType.ItemsSource = this._repo.GetOperationTypes();
             cbOperationType.DisplayMemberPath = "Name";
+            cbSalaryCurrency.ItemsSource = this._repo.GetCurrencies();
+            cbSalaryCurrency.DisplayMemberPath = "Name";
+            cbConvertedCurrency.ItemsSource = this._repo.GetCurrencies();
+            cbConvertedCurrency.DisplayMemberPath = "Name";
+            cbBankOperationType.ItemsSource = this._repo.GetBankOperationTypes();
+            cbBankOperationType.DisplayMemberPath = "Name";
+            cbBank.ItemsSource = this._repo.GetBankAccounts();
+            cbBank.DisplayMemberPath = "Name";
+            cbUtilities.ItemsSource = this._repo.GetUtilities();
+            cbUtilities.DisplayMemberPath = "Name";
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
@@ -70,12 +80,6 @@ namespace HomeBook
         private void btnCancelAddOperation_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void cbOperationType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var selectedType = cbOperationType.SelectedItem as OperationTypeModel;
-            this.operation.OperationTypeId = selectedType.OperationTypeId;
         }
 
         private void btnAddOpration_Click(object sender, RoutedEventArgs e)

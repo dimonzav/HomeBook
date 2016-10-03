@@ -72,10 +72,14 @@
     </Compile>
     <Compile Include="BoolTurnConverter.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\BankAccount.cs" />
+    <Compile Include="Models\BankOperationType.cs" />
+    <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationProduct.cs" />
     <Compile Include="Models\OperationService.cs" />
     <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\Utility.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>

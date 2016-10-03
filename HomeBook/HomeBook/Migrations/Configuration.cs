@@ -1,14 +1,12 @@
 namespace HomeBook.Migrations
 {
-    using HomeBook.DataAccess;
-    using HomeBook.Models;
+    using DataAccess;
+    using Models;
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<HomeBook.DataAccess.HomeBookContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<HomeBookContext>
     {
         public Configuration()
         {
@@ -30,11 +28,12 @@ namespace HomeBook.Migrations
         {
             List<OperationType> types = new List<OperationType>
             {
-                new OperationType { OperationTypeId = 1, Name = "Product" },
-                new OperationType { OperationTypeId = 2, Name = "Salary" },
-                new OperationType { OperationTypeId = 3, Name = "Cost" },
-                new OperationType { OperationTypeId = 4, Name = "Utilities" },
-                new OperationType { OperationTypeId = 5, Name = "Bank" }
+                new OperationType { OperationTypeId = 1, Name = "None", Order = 1 },
+                new OperationType { OperationTypeId = 1, Name = "Product", Order = 2 },
+                new OperationType { OperationTypeId = 2, Name = "Service", Order = 3 },
+                new OperationType { OperationTypeId = 3, Name = "Salary", Order = 4 },
+                new OperationType { OperationTypeId = 4, Name = "Bank", Order = 5 },
+                new OperationType { OperationTypeId = 5, Name = "Utilities", Order = 6 }
             };
 
             return types.ToArray();
@@ -66,6 +65,42 @@ namespace HomeBook.Migrations
             };
 
             return operations.ToArray(); 
+        }
+
+        private Currency[] Currency()
+        {
+            List<Currency> currency = new List<Currency>
+            {
+                new Currency { Name = "USD" },
+                new Currency { Name = "UAH" },
+                new Currency { Name = "EUR" }
+            };
+
+            return currency.ToArray();
+        }
+
+        private Utility[] Utilities()
+        {
+            List<Utility> utilities = new List<Utility>
+            {
+                new Utility { Name = "Water" },
+                new Utility { Name = "Gas" },
+                new Utility { Name = "Electricity" }
+            };
+
+            return utilities.ToArray();
+        }
+
+        private BankOperationType[] BankOperations()
+        {
+            List<BankOperationType> bankOperations = new List<BankOperationType>
+            {
+                new BankOperationType { BankOperationId = 0, Name = "Deposit" },
+                new BankOperationType { BankOperationId = 1, Name = "Credit" },
+                new BankOperationType { BankOperationId = 2, Name = "Deposit %" }
+            };
+
+            return bankOperations.ToArray();
         }
           
     }

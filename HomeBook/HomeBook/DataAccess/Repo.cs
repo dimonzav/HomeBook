@@ -26,7 +26,7 @@
 
         public List<OperationTypeModel> GetOperationTypes()
         {
-            var typesDb = this.context.OperationsTypes.ToList();
+            var typesDb = this.context.OperationsTypes.OrderBy(o => o.Order).ToList();
 
             List<OperationTypeModel> models = new List<OperationTypeModel>();
 
@@ -43,6 +43,26 @@
             }
 
             return null;
+        }
+
+        public List<Currency> GetCurrencies()
+        {
+            return this.context.Currencies.ToList();
+        }
+
+        public List<Utility> GetUtilities()
+        {
+            return this.context.Utilities.ToList();
+        }
+
+        public List<BankOperationType> GetBankOperationTypes()
+        {
+            return this.context.BankOperationTypes.ToList();
+        }
+
+        public List<BankAccount> GetBankAccounts()
+        {
+            return this.context.BankAccounts.ToList();
         }
 
         public List<OperationModel> GetOperations()

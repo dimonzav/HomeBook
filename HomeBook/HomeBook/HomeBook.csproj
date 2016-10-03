@@ -74,6 +74,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationProduct.cs" />
+    <Compile Include="Models\OperationService.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>
@@ -88,6 +90,7 @@
     </Compile>
     <Compile Include="ViewModels\OperationModel.cs" />
     <Compile Include="ViewModels\OperationProductModel.cs" />
+    <Compile Include="ViewModels\OperationServiceModel.cs" />
     <Compile Include="ViewModels\OperationTypeModel.cs" />
     <Compile Include="ViewModels\ReportModel.cs" />
     <Page Include="AddOperation.xaml">

@@ -153,9 +153,23 @@
             return this.context.SaveChanges() > 0;
         }
 
+        public bool AddService(string name)
+        {
+            var service = new Service { Name = name };
+
+            this.context.Services.Add(service);
+
+            return this.context.SaveChanges() > 0;
+        }
+
         public List<Product> GetProducts()
         {
             return this.context.Products.ToList();
+        }
+
+        public List<Service> GetServices()
+        {
+            return this.context.Services.ToList();
         }
 
         public List<OperationModel> GetReportForOperations(ReportModel reportModel)

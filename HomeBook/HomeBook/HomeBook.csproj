@@ -67,6 +67,9 @@
     <Compile Include="AddOperation.xaml.cs">
       <DependentUpon>AddOperation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddService.xaml.cs">
+      <DependentUpon>AddService.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BoolTurnConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Models\Operation.cs" />
@@ -77,6 +80,9 @@
     <Compile Include="OperationProduct.xaml.cs">
       <DependentUpon>OperationProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OperationService.xaml.cs">
+      <DependentUpon>OperationService.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
@@ -85,6 +91,10 @@
     <Compile Include="ViewModels\OperationTypeModel.cs" />
     <Compile Include="ViewModels\ReportModel.cs" />
     <Page Include="AddOperation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Operations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OperationService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

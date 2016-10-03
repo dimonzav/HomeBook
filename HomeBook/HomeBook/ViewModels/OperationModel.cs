@@ -16,6 +16,11 @@
         private int operationTypeId;
         private DateTime date;
         private double? sum;
+        private bool _isProductOperations;
+        private bool _isSalary;
+        private bool _isServiceOperations;
+        private bool _isUtilities;
+        private bool _isBank;
 
         public OperationModel()
         {
@@ -86,6 +91,61 @@
             set
             {
                 sum = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsProductOperations
+        {
+            get { return _isProductOperations; }
+            set
+            {
+                if (value == _isProductOperations) return;
+                _isProductOperations = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsSalary
+        {
+            get { return _isSalary; }
+            set
+            {
+                if (value == _isSalary) return;
+                _isSalary = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsServicesOperations
+        {
+            get { return _isServiceOperations; }
+            set
+            {
+                if (value == _isServiceOperations) return;
+                _isServiceOperations = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsUtilities
+        {
+            get { return _isUtilities; }
+            set
+            {
+                if (value == _isUtilities) return;
+                _isUtilities = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsBank
+        {
+            get { return _isBank; }
+            set
+            {
+                if (value == _isBank) return;
+                _isBank = value;
                 NotifyPropertyChanged();
             }
         }

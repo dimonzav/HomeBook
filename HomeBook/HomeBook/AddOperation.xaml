@@ -7,29 +7,42 @@
         mc:Ignorable="d"
         Title="Add Operation" Height="500" Width="650">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:OperationModel x:Key="OperationModel" />
     </Window.Resources>
     <Window.DataContext>
         <Binding Source="{StaticResource OperationModel}" />
     </Window.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="2*" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF150D0D" Offset="0"/>
                 <GradientStop Color="#FFFFA2A2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <ComboBox x:Name="cbOperationType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Margin="56,43,0,0" Height="25" SelectionChanged="cbOperationType_SelectionChanged" />
-        <TextBox x:Name="tbOperationName" Text="{Binding Name}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="539" Margin="56,120,0,0" FontFamily="Cooper Black"/>
-        <Label x:Name="label" Content="Operation name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,92,0,0" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" RenderTransformOrigin="0.696,0.536"/>
-        <Label x:Name="label1" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,15,0,0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030"/>
-        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding Date}" VerticalAlignment="Top" Margin="370,43,0,0" Height="23" Width="225" FirstDayOfWeek="Monday" SelectedDateFormat="Short"/>
-        <Button x:Name="btnAddProduct" Content="Add product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="56,181,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="13.333" Click="btnAddProduct_Click" Height="30"/>
-        <TextBox x:Name="tbSum" Text="{Binding Sum}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Margin="370,339,0,0" FontFamily="Cooper Black" FontWeight="Bold"/>
-        <Button x:Name="btnAddOpration" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="151,400,0,0" Foreground="#FFE0B33B" Height="30" FontFamily="Cooper Black" FontSize="16" Click="btnAddOpration_Click"/>
-        <Button x:Name="btnCancelAddOperation" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="370,400,0,0" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Height="30" Click="btnCancelAddOperation_Click"/>
-        <Label x:Name="label4" Content="Total" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="306,336,0,0" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16"/>
-        <DataGrid x:Name="dgOperationProducts" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,216,0,0" Height="101" Width="540" AutoGenerateColumns="False" IsReadOnly="True">
+
+        <Label x:Name="label1" Content="Type" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,15,0,0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030"/>
+        <ComboBox x:Name="cbOperationType" Grid.Row="0" Grid.Column="0" SelectedIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Margin="56,43,0,0" Height="25" SelectionChanged="cbOperationType_SelectionChanged" />
+        <Label x:Name="label2" Content="Date" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16" Margin="75,15,0,0"/>
+        <DatePicker Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" SelectedDate="{Binding Date}" VerticalAlignment="Top"  Height="23" Width="225" FirstDayOfWeek="Monday" SelectedDateFormat="Short" Margin="46,43,0,0"/>
+        <Label x:Name="label" Content="Operation name" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" Margin="56,5,0,0"/>
+        <TextBox x:Name="tbOperationName" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Name}" Height="25" TextWrapping="Wrap" FontFamily="Cooper Black" Margin="50, 20, 50, 0" />
+
+        <Button x:Name="btnAddProduct" Content="Add product" Grid.Row="2" Grid.Column="0" Visibility="{Binding IsProductOperations, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="13.333" Click="btnAddProduct_Click" Height="30" Margin="50,24,0,0"/>
+        <DataGrid x:Name="dgOperationProducts" Visibility="{Binding IsProductOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="3" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" Margin="50, 0, 50, 0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="160" />
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="120" />
@@ -38,6 +51,43 @@
                 <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" Width="98" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="label2" Content="Date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,15,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
+        <Label x:Name="label4" Content="Total" Visibility="{Binding IsProductOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" Margin="46,10,0,0" Grid.Column="1"/>
+        <TextBox x:Name="tbSum" Grid.Row="4" Grid.Column="1" Text="{Binding Sum}" Visibility="{Binding IsProductOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Height="25" TextWrapping="Wrap" Width="225" FontFamily="Cooper Black" FontWeight="Bold" Margin="0,20,10,0"/>
+
+        <Label x:Name="labelForSalaryAmount" Content="Amount" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" Margin="0,10,120,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBox x:Name="tbSalaryAmount" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Height="25" Width="150" Margin="0,30,50,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Label x:Name="labelForCurrency" Content="Currency" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" Margin="50,10,0,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <ComboBox x:Name="cbSalaryCurrency" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" SelectedIndex="0" Width="80" Margin="50,30,0,0" Height="25" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <CheckBox Grid.Row="3" Grid.Column="0" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0,0,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}">Convert</CheckBox>
+        <Label x:Name="labelForConvertedCurrency" Content="to:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" Margin="60,0,0,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <ComboBox x:Name="cbConvertedCurrency" Grid.Row="3" Grid.Column="0" Width="80" Height="25" SelectedIndex="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Label x:Name="forConvertValue" Content="Converted value:" Grid.Row="3" Grid.Column="1" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBox x:Name="tbConvertedValue" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25" Margin="0,0,50,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <Button x:Name="btnAddService" Content="Add service" Grid.Row="2" Grid.Column="0" Visibility="{Binding IsServicesOperations, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="130" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="14" Height="30" Margin="50,0,0,10"/>
+        <DataGrid x:Name="dgOperationServices" Visibility="{Binding IsServicesOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="3" Grid.ColumnSpan="2"  AutoGenerateColumns="False" IsReadOnly="True" Margin="50, 0, 50, 0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="160" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Description}" Width="280" />
+                <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" Width="98" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="forServicesSum" Content="Total" Grid.Row="4" Visibility="{Binding IsServicesOperations, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" Margin="46,10,0,0" Grid.Column="1"/>
+        <TextBox x:Name="tbServicesSum" Grid.Row="4" Grid.Column="1" Text="{Binding Sum}" Visibility="{Binding IsServicesOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Height="25" TextWrapping="Wrap" Width="225" FontFamily="Cooper Black" FontWeight="Bold" Margin="0,20,10,0"/>
+
+        <Label x:Name="forUtilities" Content="Select utility" Visibility="{Binding IsUtilities, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="2" Grid.Column="0" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" HorizontalAlignment="Left" Margin="50,10,0,0" />
+        <ComboBox x:Name="cbUtilities" Grid.Row="2" Grid.Column="0" Visibility="{Binding IsUtilities, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Height="25" Margin="0,20,0,0" />
+        <Label x:Name="forUtilitiesSum" Content="Sum" Visibility="{Binding IsUtilities, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="2" Grid.Column="1" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" HorizontalAlignment="Left" Margin="50,10,0,0" />
+        <TextBox x:Name="tbUtilitiesSum" Grid.Row="2" Grid.Column="1" Visibility="{Binding IsUtilities, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Height="25" Margin="0,20,0,0" />
+
+        <Label x:Name="forBankOperationType" Content="Choose operation" Grid.Row="2" Grid.Column="0" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" HorizontalAlignment="Left" Margin="50,10,0,0" Visibility="{Binding IsBank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <ComboBox x:Name="cbBankOperationType" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Height="25" Margin="0,20,0,0" Visibility="{Binding IsBank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Label x:Name="forBank" Content="Bank" Grid.Row="2" Grid.Column="1" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" HorizontalAlignment="Left" Margin="50,10,0,0" Visibility="{Binding IsBank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <ComboBox x:Name="cbBank" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Height="25" Margin="0,20,0,0" Visibility="{Binding IsBank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Label x:Name="forSum" Content="Sum" Grid.Row="3" Grid.ColumnSpan="2" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" HorizontalAlignment="Center" Margin="0,20,0,0" Visibility="{Binding IsBank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBox x:Name="tbBankSum" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="225" Height="25" TextWrapping="Wrap" FontFamily="Cooper Black" FontWeight="Bold" Visibility="{Binding IsBank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <Button x:Name="btnAddOpration" Content="Add" Grid.Row="5" Grid.Column="0" Width="130" Foreground="#FFE0B33B" Height="30" FontFamily="Cooper Black" FontSize="16" Click="btnAddOpration_Click"/>
+        <Button x:Name="btnCancelAddOperation" Content="Cancel" Grid.Row="5" Grid.Column="1" Width="130" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Height="30" Click="btnCancelAddOperation_Click"/>
     </Grid>
 </Window>

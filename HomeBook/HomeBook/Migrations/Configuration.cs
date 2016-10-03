@@ -30,8 +30,11 @@ namespace HomeBook.Migrations
         {
             List<OperationType> types = new List<OperationType>
             {
-                new OperationType { OperationTypeId = 1, Name = "Charge" },
-                new OperationType { OperationTypeId = 2, Name = "Write-Off" }
+                new OperationType { OperationTypeId = 1, Name = "Product" },
+                new OperationType { OperationTypeId = 2, Name = "Salary" },
+                new OperationType { OperationTypeId = 3, Name = "Cost" },
+                new OperationType { OperationTypeId = 4, Name = "Utilities" },
+                new OperationType { OperationTypeId = 5, Name = "Bank" }
             };
 
             return types.ToArray();

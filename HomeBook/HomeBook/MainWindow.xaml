@@ -5,23 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeBook"
         mc:Ignorable="d"
-        Title="Login" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+        Title="Login" Height="350" Width="500" WindowStartupLocation="CenterScreen" WindowState="Normal" ResizeMode="NoResize">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="42*"/>
-        </Grid.ColumnDefinitions>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0.004"/>
                 <GradientStop Color="#FF4F90F0" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,194,0,0" Width="360" Height="25" FontSize="16" Grid.Column="1"/>
-        <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" Margin="29,103,0,0" FontSize="16" FontFamily="Cooper Black" Grid.Column="1"/>
-        <Label x:Name="label" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,66,0,0" Width="112" FontFamily="Cooper Black" FontSize="16" Height="32" Foreground="#FFE09325" Grid.Column="1"/>
-        <Label x:Name="label_Copy" Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,144,0,0" Width="112" FontSize="16" FontFamily="Cooper Black" Height="32" Foreground="#FFE09325" Grid.Column="1"/>
-        <Button x:Name="btnOk" Content="Ok" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="98,239,0,0" Height="25" FontSize="16" FontFamily="Cooper Black" Foreground="#FFE09325" Click="btnOk_Click" Grid.Column="1"/>
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="244,239,0,0" Height="25" Foreground="#FFE09325" FontFamily="Cooper Black" FontSize="16" Grid.Column="1" Click="btnExit_Click"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="forLogin" Content="Login" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontFamily="Cooper Black" FontSize="16" Height="32" Foreground="#FFE09325" Margin="90,0,0,0" />
+        <TextBox x:Name="tbLogin" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="200" Height="25" TextWrapping="Wrap" FontSize="16" FontFamily="Cooper Black" Margin="0,0,90,0" />
+        <Label x:Name="forPassword" Content="Password" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontSize="16" FontFamily="Cooper Black" Height="32" Foreground="#FFE09325" Margin="90,0,0,0" />
+        <PasswordBox x:Name="passwordBox" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="200" Height="25" FontSize="16" FontFamily="Cooper Black" Margin="0,0,90,0" />
+        <Button x:Name="btnOk" Content="Ok" Grid.Row="3" Grid.Column="0" Width="75" Height="25" FontSize="16" FontFamily="Cooper Black" Foreground="#FFE09325" Click="btnOk_Click" />
+        <Button x:Name="btnExit" Content="Exit" Grid.Row="3" Grid.Column="1" Width="75" Height="25" Foreground="#FFE09325" FontFamily="Cooper Black" FontSize="16" Click="btnExit_Click" />
     </Grid>
 </Window>

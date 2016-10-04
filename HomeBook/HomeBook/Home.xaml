@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeBook"
         mc:Ignorable="d"
-        Title="Home" Height="364.286" Width="563.91" WindowStartupLocation="CenterScreen">
+        Title="Home" Height="350" Width="550" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,7 +13,26 @@
                 <GradientStop Color="#FFFFA2A2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="btnOperations" Content="Operations" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="31,48,0,0" Height="100" FontFamily="Cooper Black" FontSize="24" BorderBrush="#FF818181" Foreground="Black" Click="btnOperations_Click">
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Menu x:Name="menu" Height="23" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Add operation"></MenuItem>
+                <MenuItem Header="_Add product"></MenuItem>
+                <MenuItem Header="_Export to Excel"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Button x:Name="btnOperations" Content="Operations" Grid.Row="1" Grid.Column="0" Width="140"  Height="100" FontFamily="Cooper Black" FontSize="24" BorderBrush="#FF818181" Foreground="Black" Click="btnOperations_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
             </Button.Effect>
@@ -26,7 +45,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnReport" Content="Reports" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="215,48,0,0" Height="100" BorderBrush="#FF785A5A" Foreground="Black" FontSize="24" FontFamily="Cooper Black" Click="btnReport_Click">
+        <Button x:Name="btnReport" Content="Reports" Grid.Row="1" Grid.Column="1" Width="140" Height="100" BorderBrush="#FF785A5A" Foreground="Black" FontSize="24" FontFamily="Cooper Black" Click="btnReport_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
             </Button.Effect>
@@ -39,7 +58,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnProduct" Content="Products" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="392,48,0,0" Height="100" FontFamily="Cooper Black" FontSize="24" OpacityMask="Black">
+        <Button x:Name="btnProduct" Content="Products" Grid.Row="1" Grid.Column="2" Width="140" Height="100" FontFamily="Cooper Black" FontSize="24" OpacityMask="Black">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
             </Button.Effect>
@@ -52,15 +71,5 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top" x:Name="menu" Height="23" VerticalAlignment="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Add operation"></MenuItem>
-                    <MenuItem Header="_Add product"></MenuItem>
-                    <MenuItem Header="_Export to Excel"></MenuItem>
-                </MenuItem>
-            </Menu>
-        </DockPanel>
-
     </Grid>
 </Window>

@@ -95,9 +95,9 @@ namespace HomeBook.Migrations
         {
             List<BankOperationType> bankOperations = new List<BankOperationType>
             {
-                new BankOperationType { BankOperationId = 0, Name = "Deposit" },
-                new BankOperationType { BankOperationId = 1, Name = "Credit" },
-                new BankOperationType { BankOperationId = 2, Name = "Deposit %" }
+                new BankOperationType { BankOperationTypeId = 0, Name = "Deposit" },
+                new BankOperationType { BankOperationTypeId = 1, Name = "Credit" },
+                new BankOperationType { BankOperationTypeId = 2, Name = "Deposit %" }
             };
 
             return bankOperations.ToArray();

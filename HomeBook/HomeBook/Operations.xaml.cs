@@ -30,7 +30,7 @@ namespace HomeBook
 
             var operations = this._repo.GetOperations();
 
-            dgOperagions.ItemsSource = operations;
+            dgProducts.ItemsSource = operations;
         }
 
         private void btnAddOperation_Click(object sender, RoutedEventArgs e)
@@ -42,8 +42,8 @@ namespace HomeBook
 
         private void RefreshOperations()
         {
-            dgOperagions.ItemsSource = this._repo.GetOperations();
-            dgOperagions.Items.Refresh();
+            dgProducts.ItemsSource = this._repo.GetOperations();
+            dgProducts.Items.Refresh();
         }
     }
 }

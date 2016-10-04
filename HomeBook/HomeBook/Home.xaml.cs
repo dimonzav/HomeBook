@@ -37,5 +37,12 @@ namespace HomeBook
             reports.Show();
             this.Close();
         }
+
+        private void btnProduct_Click(object sender, RoutedEventArgs e)
+        {
+            Settings units = new Settings();
+            units.Show();
+            this.Close();
+        }
     }
 }

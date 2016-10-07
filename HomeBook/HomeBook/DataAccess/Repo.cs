@@ -126,17 +126,17 @@
                 {
                     OperationId = Guid.NewGuid().ToString(),
                     Name = operationModel.Name,
-                    OperationTypeId = operationModel.OperationTypeId,
+                    OperationTypeId = operationModel.OperationTypeId + 1,
                     Date = DateTime.Now,
                     Sum = operationModel.Sum,
-                    SalaryOperationTypeId = operationModel.SalaryOperationTypeId != 0 ? operationModel.SalaryOperationTypeId : 1,
-                    CurrencyId = operationModel.CurrencyId != 0 ? operationModel.CurrencyId : 1,
-                    ConvertedCurrencyId = operationModel.ConvertedCurrencyId != 0 ? operationModel.ConvertedCurrencyId : 1,
+                    SalaryOperationTypeId = operationModel.SalaryOperationTypeId + 1,
+                    CurrencyId = operationModel.CurrencyId + 1,
+                    ConvertedCurrencyId = operationModel.ConvertedCurrencyId + 1,
                     ConvertedValue = operationModel.ConvertedValue,
                     ConvertedSalary = operationModel.ConvertedSalary,
-                    BankOperationTypeId = operationModel.BankOperationTypeId != 0 ? operationModel.BankOperationTypeId : 1,
-                    BankAccountId = operationModel.BankAccountId != 0 ? operationModel.BankAccountId : 1,
-                    UtilityId = operationModel.UtilityId != 0 ? operationModel.UtilityId : 1
+                    BankOperationTypeId = operationModel.BankOperationTypeId + 1,
+                    BankAccountId = operationModel.BankAccountId + 1,
+                    UtilityId = operationModel.UtilityId + 1
                 };
 
                 if (operationModel.OperationTypeId == 1)

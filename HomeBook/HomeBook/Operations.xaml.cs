@@ -35,7 +35,8 @@ namespace HomeBook
 
         private void btnAddOperation_Click(object sender, RoutedEventArgs e)
         {
-            AddOperation add = new AddOperation();
+            var selectedTabIndex = tabCtrl.SelectedIndex;
+            AddOperation add = new AddOperation(selectedTabIndex);
             add.RefreshOperationsEvent += new AddOperation.RefreshDel(this.RefreshOperations);
             add.ShowDialog();
         }

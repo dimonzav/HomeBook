@@ -27,7 +27,7 @@
         private bool _isSalary;
         private bool _isServiceOperations;
         private bool _isUtilities;
-        private bool _isBank = true;
+        private bool _isBank;
 
         public OperationModel()
         {

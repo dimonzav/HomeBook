@@ -32,11 +32,18 @@ namespace HomeBook
         public AddOperation()
         {
             InitializeComponent();
+        }
+
+        public AddOperation(int operationTypeId)
+        {
+            InitializeComponent();
 
             this._repo = new Repo();
             this.productList = new List<OperationProductModel>();
             this.serviceList = new List<OperationServiceModel>();
             this.operation = this.DataContext as OperationModel;
+
+            this.operation.OperationTypeId = operationTypeId;
 
             cbOperationType.ItemsSource = this._repo.GetOperationTypes();
             cbOperationType.DisplayMemberPath = "Name";

@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TabControl Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
+        <TabControl x:Name="tabCtrl" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
             <TabItem Header="Products" Width="155">
                 <DataGrid x:Name="dgProducts" Grid.Row="1" AutoGenerateColumns="False">
                     <DataGrid.Columns>

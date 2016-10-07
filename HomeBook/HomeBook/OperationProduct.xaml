@@ -30,7 +30,7 @@
         <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,110,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
         <TextBox x:Name="tbProductPrice" Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="270,149,0,0" FontFamily="Cooper Black" FontSize="13.333"/>
         <Label x:Name="unitLabel" Content="Unit" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,202,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
-        <TextBox x:Name="tbProductUnit" Text="{Binding Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="55,235,0,0" FontFamily="Cooper Black" FontSize="13.333"/>
+        <ComboBox x:Name="cbProductUnit" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="165" Margin="55,235,0,0" SelectionChanged="cbProductUnit_SelectionChanged"/>
         <Label x:Name="sumLabel" Content="Sum" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,202,0,0" Foreground="#FFE0B030" FontFamily="Cooper Black" FontSize="16"/>
         <TextBox x:Name="tbTotalSum" Text="{Binding Sum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="270,235,0,0" FontFamily="Cooper Black" FontSize="13.333"/>
     </Grid>

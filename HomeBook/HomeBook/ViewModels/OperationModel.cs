@@ -13,22 +13,21 @@
     public class OperationModel : INotifyPropertyChanged
     {
         private string _name;
-        private int _operationTypeId = 1;
+        private int _operationTypeId;
         private DateTime _date;
         private double? _sum;
-        private double? _salaryAmount;
+        private int _salaryOperationTypeId;
         private int _currencyId;
         private int _convertedCurrencyId;
-        private double _convertedValue;
-        private double _convertedSalary;
+        private double? _convertedValue;
         private int _utilityTypeId;
         private int _bankOperationTypeId;
         private int _bankTypeId;
-        private bool _isProductOperations = true;
+        private bool _isProductOperations;
         private bool _isSalary;
         private bool _isServiceOperations;
         private bool _isUtilities;
-        private bool _isBank;
+        private bool _isBank = true;
 
         public OperationModel()
         {
@@ -74,8 +73,8 @@
             get { return _operationTypeId; }
             set
             {
-                if (value == _operationTypeId || value == 0) return;
-                _operationTypeId = value;
+                if (value == _operationTypeId) return;
+                _operationTypeId = value + 1;
                 ChangeOperationType();
                 NotifyPropertyChanged();
             }
@@ -84,6 +83,8 @@
         public virtual OperationTypeModel OperationTypeModel { get; set; }
 
         public virtual ICollection<OperationProductModel> OperationProducts { get; set; }
+
+        public virtual ICollection<OperationServiceModel> OperationServices { get; set; }
 
         [Required]
         public DateTime Date
@@ -97,19 +98,21 @@
             }
         }
 
-        [Required]
-        public double? SalaryAmount
+        public int SalaryOperationTypeId
         {
-            get { return _salaryAmount; }
+            get { return _salaryOperationTypeId; }
             set
             {
-                if (value == _salaryAmount) return;
-                _salaryAmount = value;
+                if (value == _salaryOperationTypeId) return;
+                _salaryOperationTypeId = value;
+                this.ClearConvertedSalary();
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(IsConvert));
             }
         }
 
-        [Required]
+        public bool IsConvert => SalaryOperationTypeId == 1;
+
         public int CurrencyId
         {
             get { return _currencyId; }
@@ -123,7 +126,6 @@
 
         public virtual Currency Currency { get; set; }
 
-        [Required]
         public int ConvertedCurrencyId
         {
             get { return _convertedCurrencyId; }
@@ -135,8 +137,7 @@
             }
         }
 
-        [Required]
-        public double ConvertedValue
+        public double? ConvertedValue
         {
             get { return _convertedValue; }
             set
@@ -144,22 +145,23 @@
                 if (value == _convertedValue) return;
                 _convertedValue = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(this.ConvertedSalary));
             }
         }
 
-        [Required]
-        public double ConvertedSalary
-        {
-            get { return _convertedSalary; }
-            set
-            {
-                if (value == _convertedSalary) return;
-                _convertedSalary = value;
-                NotifyPropertyChanged();
-            }
-        }
+        public double? ConvertedSalary => this.ConvertedValue * this.Sum;
 
-        [Required]
+        //public double ConvertedSalary
+        //{
+        //    get { return _convertedSalary; }
+        //    set
+        //    {
+        //        if (value == _convertedSalary) return;
+        //        _convertedSalary = value;
+        //        NotifyPropertyChanged();
+        //    }
+        //}
+
         public int UtilityId
         {
             get { return _utilityTypeId; }
@@ -173,7 +175,6 @@
 
         public virtual Utility Utility { get; set; }
 
-        [Required]
         public int BankOperationTypeId
         {
             get { return _bankOperationTypeId; }
@@ -187,7 +188,6 @@
 
         public virtual BankOperationType BankOperationType { get; set; }
 
-        [Required]
         public int BankAccountId
         {
             get { return _bankTypeId; }
@@ -302,5 +302,13 @@
                 this.IsUtilities = true;
             }
         } 
+
+        public void ClearConvertedSalary()
+        {
+            if(this.SalaryOperationTypeId == 0)
+            {
+                this.ConvertedValue = null;
+            }
+        }
     }
 }

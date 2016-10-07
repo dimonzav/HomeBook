@@ -37,6 +37,8 @@ namespace HomeBook
 
             cbProducts.ItemsSource = this._repo.GetProducts();
             cbProducts.DisplayMemberPath = "Name";
+            cbProductUnit.ItemsSource = this._repo.GetProductUnits();
+            cbProductUnit.DisplayMemberPath = "Name";
         }
         
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
@@ -56,6 +58,12 @@ namespace HomeBook
         {
             var selectedProduct = cbProducts.SelectedItem as Product;
             this.operationProduct.Name = selectedProduct.Name;
+        }
+
+        private void cbProductUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedUnit = cbProductUnit.SelectedItem as ProductUnit;
+            this.operationProduct.Unit = selectedUnit.Name;
         }
 
         private void btnAddOperationProduct_Click(object sender, RoutedEventArgs e)

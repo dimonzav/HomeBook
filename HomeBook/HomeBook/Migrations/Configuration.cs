@@ -21,14 +21,23 @@ namespace HomeBook.Migrations
 
             context.Products.AddOrUpdate(this.Products());
 
-            context.Operations.AddOrUpdate(this.Operations());
+            context.ProductUnits.AddOrUpdate(this.ProductUnits());
+
+            context.Currencies.AddOrUpdate(this.Currency());
+
+            context.BankOperationTypes.AddOrUpdate(this.BankOperations());
+
+            context.BankAccounts.AddOrUpdate(this.BankAccounts());
+
+            context.Utilities.AddOrUpdate(this.Utilities());
+
+            context.SalaryOperationTypes.AddOrUpdate(this.SalaryTypes());
         }
 
         private OperationType[] OperationTypes()
         {
             List<OperationType> types = new List<OperationType>
             {
-                new OperationType { OperationTypeId = 1, Name = "None", Order = 1 },
                 new OperationType { OperationTypeId = 1, Name = "Product", Order = 2 },
                 new OperationType { OperationTypeId = 2, Name = "Service", Order = 3 },
                 new OperationType { OperationTypeId = 3, Name = "Salary", Order = 4 },
@@ -53,27 +62,27 @@ namespace HomeBook.Migrations
             return products.ToArray();
         }
 
-        private Operation[] Operations()
+        private ProductUnit[] ProductUnits()
         {
-            List<Operation> operations = new List<Operation>
+            List<ProductUnit> units = new List<ProductUnit>
             {
-                new Operation { OperationId = "1", OperationTypeId = 1, Name = "Buy tomatoes", Date = new DateTime (2016, 08, 25), Sum = 25.5 },
-                new Operation { OperationId = "2", OperationTypeId = 1, Name = "Buy potatoes", Date = new DateTime (2016, 07, 20), Sum = 20.50 },
-                new Operation { OperationId = "3", OperationTypeId = 1, Name = "Buy bread", Date = new DateTime (2016, 08, 24), Sum = 12.25 },
-                new Operation { OperationId = "4", OperationTypeId = 1, Name = "Buy butter", Date = new DateTime (2016, 08, 15), Sum = 25.5 },
-                new Operation { OperationId = "5", OperationTypeId = 1, Name = "Buy meat", Date = new DateTime (2016, 08, 21), Sum = 260.00 }
+                new ProductUnit { ProductUnitId = 1, Name = "kg" },
+                new ProductUnit { ProductUnitId = 2, Name = "gram" },
+                new ProductUnit { ProductUnitId = 3, Name = "piece" },
+                new ProductUnit { ProductUnitId = 4, Name = "bottle" },
+                new ProductUnit { ProductUnitId = 5, Name = "bundle" }
             };
 
-            return operations.ToArray(); 
+            return units.ToArray();
         }
 
         private Currency[] Currency()
         {
             List<Currency> currency = new List<Currency>
             {
-                new Currency { Name = "USD" },
-                new Currency { Name = "UAH" },
-                new Currency { Name = "EUR" }
+                new Currency { CurrencyId = 1, Name = "USD" },
+                new Currency { CurrencyId = 2, Name = "UAH" },
+                new Currency { CurrencyId = 3, Name = "EUR" }
             };
 
             return currency.ToArray();
@@ -95,13 +104,36 @@ namespace HomeBook.Migrations
         {
             List<BankOperationType> bankOperations = new List<BankOperationType>
             {
-                new BankOperationType { BankOperationTypeId = 0, Name = "Deposit" },
-                new BankOperationType { BankOperationTypeId = 1, Name = "Credit" },
-                new BankOperationType { BankOperationTypeId = 2, Name = "Deposit %" }
+                new BankOperationType { BankOperationTypeId = 1, Name = "Deposit" },
+                new BankOperationType { BankOperationTypeId = 2, Name = "Credit" },
+                new BankOperationType { BankOperationTypeId = 3, Name = "Deposit %" }
             };
 
             return bankOperations.ToArray();
         }
-          
+
+        private BankAccount[] BankAccounts()
+        {
+            List<BankAccount> accounts = new List<BankAccount>
+            {
+                new BankAccount { BankAccountId = 1, Name = "OTP" },
+                new BankAccount { BankAccountId = 2, Name = "PrivatBank" },
+                new BankAccount { BankAccountId = 3, Name = "UniCredit" }
+            };
+
+            return accounts.ToArray();
+        }
+
+        private SalaryOperationType[] SalaryTypes()
+        {
+            List<SalaryOperationType> types = new List<SalaryOperationType>
+            {
+                new SalaryOperationType { SalaryOperationTypeId = 1, Name = "Enrollment" },
+                new SalaryOperationType { SalaryOperationTypeId = 2, Name = "Widthdrawal" }
+            };
+
+            return types.ToArray();
+        }
+
     }
 }

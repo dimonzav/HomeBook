@@ -3,12 +3,12 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Currency
+    public class SalaryOperationType
     {
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CurrencyId { get; set; }
+        public int SalaryOperationTypeId { get; set; }
 
         [Required]
         public string Name { get; set; }

@@ -54,8 +54,8 @@ namespace HomeBook
 
         private void cbServices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedProduct = cbServices.SelectedItem as Service;
-            this.operationService.Name = selectedProduct.Name;
+            var selectedService = cbServices.SelectedItem as Service;
+            this.operationService.Name = selectedService.Name;
         }
 
         private void btnAddService_Click(object sender, RoutedEventArgs e)

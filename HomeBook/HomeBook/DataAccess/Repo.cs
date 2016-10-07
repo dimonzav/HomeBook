@@ -45,6 +45,11 @@
             return null;
         }
 
+        public List<ProductUnit> GetProductUnits()
+        {
+            return this.context.ProductUnits.ToList();
+        }
+
         public List<Currency> GetCurrencies()
         {
             return this.context.Currencies.ToList();
@@ -53,6 +58,11 @@
         public List<Utility> GetUtilities()
         {
             return this.context.Utilities.ToList();
+        }
+
+        public List<SalaryOperationType> GetSalaryOperationTypes()
+        {
+            return this.context.SalaryOperationTypes.ToList();
         }
 
         public List<BankOperationType> GetBankOperationTypes()
@@ -118,20 +128,44 @@
                     Name = operationModel.Name,
                     OperationTypeId = operationModel.OperationTypeId,
                     Date = DateTime.Now,
-                    Sum = operationModel.Sum
+                    Sum = operationModel.Sum,
+                    SalaryOperationTypeId = operationModel.SalaryOperationTypeId != 0 ? operationModel.SalaryOperationTypeId : 1,
+                    CurrencyId = operationModel.CurrencyId != 0 ? operationModel.CurrencyId : 1,
+                    ConvertedCurrencyId = operationModel.ConvertedCurrencyId != 0 ? operationModel.ConvertedCurrencyId : 1,
+                    ConvertedValue = operationModel.ConvertedValue,
+                    ConvertedSalary = operationModel.ConvertedSalary,
+                    BankOperationTypeId = operationModel.BankOperationTypeId != 0 ? operationModel.BankOperationTypeId : 1,
+                    BankAccountId = operationModel.BankAccountId != 0 ? operationModel.BankAccountId : 1,
+                    UtilityId = operationModel.UtilityId != 0 ? operationModel.UtilityId : 1
                 };
 
-                operationModel.OperationProducts.ToList().ForEach(a => operation.OperationProducts.Add((OperationProduct)a));
-
-                foreach (var product in operation.OperationProducts)
+                if (operationModel.OperationTypeId == 1)
                 {
-                    product.OperationProductId = Guid.NewGuid().ToString();
+                    //add products to operation entity
+                    operationModel.OperationProducts.ToList().ForEach(a => operation.OperationProducts.Add((OperationProduct)a));
+
+                    foreach (var product in operation.OperationProducts)
+                    {
+                        product.OperationProductId = Guid.NewGuid().ToString();
+                    }
+
+                    this.context.OperationProducts.AddRange(operation.OperationProducts);
+                }
+                else if (operationModel.OperationTypeId == 2)
+                {
+                    //add services to operation entity
+                    operationModel.OperationServices.ToList().ForEach(a => operation.OperationServices.Add((OperationService)a));
+
+                    foreach (var service in operation.OperationServices)
+                    {
+                        service.OperationServiceId = Guid.NewGuid().ToString();
+                    }
+
+                    this.context.OperationServices.AddRange(operation.OperationServices);
                 }
 
                 try
                 {
-                    this.context.OperationProducts.AddRange(operation.OperationProducts);
-
                     this.context.Operations.Add(operation);
 
                     return this.context.SaveChanges() > 0;

@@ -1,11 +1,11 @@
 ﻿namespace HomeBook.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class BankOperationType
     {
-        [Key]
-        [Required]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BankOperationTypeId { get; set; }
 
         [Required]

@@ -23,6 +23,7 @@ namespace HomeBook
     {
         private Repo _repo;
         private List<OperationProductModel> productList;
+        private List<OperationServiceModel> serviceList;
         private OperationModel operation;
 
         public delegate void RefreshDel();
@@ -34,10 +35,13 @@ namespace HomeBook
 
             this._repo = new Repo();
             this.productList = new List<OperationProductModel>();
+            this.serviceList = new List<OperationServiceModel>();
             this.operation = this.DataContext as OperationModel;
 
             cbOperationType.ItemsSource = this._repo.GetOperationTypes();
             cbOperationType.DisplayMemberPath = "Name";
+            cbSalaryType.ItemsSource = this._repo.GetSalaryOperationTypes();
+            cbSalaryType.DisplayMemberPath = "Name";
             cbSalaryCurrency.ItemsSource = this._repo.GetCurrencies();
             cbSalaryCurrency.DisplayMemberPath = "Name";
             cbConvertedCurrency.ItemsSource = this._repo.GetCurrencies();
@@ -77,6 +81,33 @@ namespace HomeBook
             return total;
         }
 
+        private void btnAddService_Click(object sender, RoutedEventArgs e)
+        {
+            OperationService addServiceWindow = new OperationService();
+            addServiceWindow.AddServiceEvent += new OperationService.AddServiceDel(this.AddServiceToOperation);
+            addServiceWindow.ShowDialog();
+        }
+
+        private void AddServiceToOperation(OperationServiceModel operationService)
+        {
+            this.serviceList.Add(operationService);
+            dgOperationServices.ItemsSource = this.serviceList;
+            dgOperationServices.Items.Refresh();
+            this.operation.OperationServices = this.serviceList;
+            this.operation.Sum = this.GetSumFromAllServices(this.serviceList);
+        }
+
+        private double? GetSumFromAllServices(List<OperationServiceModel> items)
+        {
+            double? total = 0;
+            foreach (var item in items)
+            {
+                total += item.Sum;
+            }
+
+            return total;
+        }
+
         private void btnCancelAddOperation_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -86,6 +117,8 @@ namespace HomeBook
         {
             this._repo.AddOperation(this.operation);
             this.RefreshOperationsEvent();
+            this.Close();
         }
+
     }
 }

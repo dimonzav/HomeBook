@@ -45,8 +45,6 @@
 
         public int ConvertedCurrencyId { get; set; }
 
-        public virtual Currency ConvertedCurrency { get; set; }
-
         public double? ConvertedValue { get; set; }
 
         public int UtilityId { get; set; }
@@ -60,6 +58,8 @@
         public int BankAccountId { get; set; }
 
         public virtual BankAccount BankAccount { get; set; }
+
+        public bool IsDeleted { get; set; }
 
     }
 }

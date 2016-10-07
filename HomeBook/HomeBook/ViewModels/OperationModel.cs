@@ -74,7 +74,7 @@
             set
             {
                 if (value == _operationTypeId) return;
-                _operationTypeId = value + 1;
+                _operationTypeId = value;
                 ChangeOperationType();
                 NotifyPropertyChanged();
             }
@@ -272,19 +272,19 @@
         public void ChangeOperationType()
         {
             this.IsProductOperations = this.IsServiceOperations = this.IsSalary = this.IsBank = this.IsUtilities = false;
-            if (this.OperationTypeId == 1)
+            if (this.OperationTypeId == 0)
             {
                 this.IsProductOperations = true;
             }
-            else if (this.OperationTypeId == 2)
+            else if (this.OperationTypeId == 1)
             {
                 this.IsServiceOperations = true;
             }
-            else if (this.OperationTypeId == 3)
+            else if (this.OperationTypeId == 2)
             {
                 this.IsSalary = true;
             }
-            else if (this.OperationTypeId == 4)
+            else if (this.OperationTypeId == 3)
             {
                 this.IsBank = true;
             }

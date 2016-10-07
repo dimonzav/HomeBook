@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HomeBook.DataAccess;
+using HomeBook.ViewModels;
 
 namespace HomeBook
 {
@@ -21,6 +22,7 @@ namespace HomeBook
     public partial class Operations : Window
     {
         private Repo _repo;
+        private string selectedOperationId;
 
         public Operations()
         {
@@ -75,6 +77,25 @@ namespace HomeBook
                 dgUtilities.Items.Refresh();
             }
             
+        }
+
+        private void dgSalary_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedOperationId = (dgSalary.SelectedItem as OperationModel).OperationId;
+        }
+
+        private void btnRemoveOperation_Click(object sender, RoutedEventArgs e)
+        {
+            var result = this._repo.DeleteOperation(selectedOperationId);
+
+            var operations = this._repo.GetOperations(3);
+            dgSalary.SelectedItem = operations[0];
+
+            if (result)
+            {
+                dgSalary.ItemsSource = operations;
+                dgSalary.Items.Refresh();
+            }
         }
     }
 }

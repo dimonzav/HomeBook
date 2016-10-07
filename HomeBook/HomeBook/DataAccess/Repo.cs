@@ -78,8 +78,8 @@
         public List<OperationModel> GetOperations(int operationTypeId)
         {
             var operationsDb = this.context.Operations
-                .Where(o => o.OperationTypeId == operationTypeId)
-                .Include("OperationType")
+                .Where(o => o.OperationTypeId == operationTypeId && !o.IsDeleted)
+                .OrderByDescending(o => o.Date)
                 .Include(p => p.OperationProducts)
                 .ToList();
 
@@ -173,7 +173,7 @@
                     UtilityId = operationModel.UtilityId + 1
                 };
 
-                if (operationModel.OperationTypeId == 1)
+                if (operation.OperationTypeId == 1)
                 {
                     //add products to operation entity
                     operationModel.OperationProducts.ToList().ForEach(a => operation.OperationProducts.Add((OperationProduct)a));
@@ -185,7 +185,7 @@
 
                     this.context.OperationProducts.AddRange(operation.OperationProducts);
                 }
-                else if (operationModel.OperationTypeId == 2)
+                else if (operation.OperationTypeId == 2)
                 {
                     //add services to operation entity
                     operationModel.OperationServices.ToList().ForEach(a => operation.OperationServices.Add((OperationService)a));
@@ -230,6 +230,15 @@
             }
 
             return false;
+        }
+
+        public bool DeleteOperation(string operationId)
+        {
+            var deletedOperation = this.context.Operations.Where(o => o.OperationId == operationId).FirstOrDefault();
+
+            deletedOperation.IsDeleted = true;
+
+            return this.context.SaveChanges() > 0;
         }
 
         public bool AddProduct(string name)

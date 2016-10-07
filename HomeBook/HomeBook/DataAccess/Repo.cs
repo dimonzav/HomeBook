@@ -75,9 +75,13 @@
             return this.context.BankAccounts.ToList();
         }
 
-        public List<OperationModel> GetOperations()
+        public List<OperationModel> GetOperations(int operationTypeId)
         {
-            var operationsDb = this.context.Operations.Include("OperationType").Include(p => p.OperationProducts).ToList();
+            var operationsDb = this.context.Operations
+                .Where(o => o.OperationTypeId == operationTypeId)
+                .Include("OperationType")
+                .Include(p => p.OperationProducts)
+                .ToList();
 
             List<OperationModel> operations = new List<OperationModel>();
 
@@ -92,21 +96,52 @@
                         OperationTypeId = operation.OperationTypeId,
                         OperationTypeModel = new OperationTypeModel(operation.OperationType),
                         Date = operation.Date,
-                        Sum = operation.Sum
+                        Sum = operation.Sum,
+                        SalaryOperationTypeId = operation.SalaryOperationTypeId,
+                        SalaryOperationType = operation.SalaryOperationType,
+                        CurrencyId = operation.CurrencyId,
+                        Currency = operation.Currency,
+                        ConvertedCurrencyId = operation.ConvertedCurrencyId,
+                        ConvertedValue = operation.ConvertedValue,
+                        BankOperationTypeId = operation.BankOperationTypeId,
+                        BankOperationType = operation.BankOperationType,
+                        BankAccountId = operation.BankAccountId,
+                        BankAccount = operation.BankAccount,
+                        UtilityId = operation.UtilityId,
+                        Utility = operation.Utility
                     };
 
-                    List<OperationProductModel> tempList = new List<OperationProductModel>();
-
-                    if (operation.OperationProducts.Count > 0)
+                    if(operation.OperationTypeId == 1)
                     {
-                        foreach (var product in operation.OperationProducts)
+                        List<OperationProductModel> tempList = new List<OperationProductModel>();
+
+                        if (operation.OperationProducts.Count > 0)
                         {
-                            OperationProductModel productModel = new OperationProductModel(product);
+                            foreach (var product in operation.OperationProducts)
+                            {
+                                OperationProductModel productModel = new OperationProductModel(product);
 
-                            tempList.Add(productModel);
+                                tempList.Add(productModel);
+                            }
+
+                            model.OperationProducts = tempList.ToArray();
                         }
+                    }
+                    else if (operation.OperationTypeId == 2)
+                    {
+                        List<OperationServiceModel> tempList = new List<OperationServiceModel>();
 
-                        model.OperationProducts = tempList.ToArray();
+                        if (operation.OperationServices.Count > 0)
+                        {
+                            foreach (var product in operation.OperationServices)
+                            {
+                                OperationServiceModel productModel = new OperationServiceModel(product);
+
+                                tempList.Add(productModel);
+                            }
+
+                            model.OperationServices = tempList.ToArray();
+                        }
                     }
 
                     operations.Add(model);
@@ -133,7 +168,6 @@
                     CurrencyId = operationModel.CurrencyId + 1,
                     ConvertedCurrencyId = operationModel.ConvertedCurrencyId + 1,
                     ConvertedValue = operationModel.ConvertedValue,
-                    ConvertedSalary = operationModel.ConvertedSalary,
                     BankOperationTypeId = operationModel.BankOperationTypeId + 1,
                     BankAccountId = operationModel.BankAccountId + 1,
                     UtilityId = operationModel.UtilityId + 1

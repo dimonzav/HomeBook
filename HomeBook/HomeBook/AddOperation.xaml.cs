@@ -26,7 +26,7 @@ namespace HomeBook
         private List<OperationServiceModel> serviceList;
         private OperationModel operation;
 
-        public delegate void RefreshDel();
+        public delegate void RefreshDel(int operationTypeId);
         public event RefreshDel RefreshOperationsEvent;
 
         public AddOperation()
@@ -123,9 +123,8 @@ namespace HomeBook
         private void btnAddOpration_Click(object sender, RoutedEventArgs e)
         {
             this._repo.AddOperation(this.operation);
-            this.RefreshOperationsEvent();
+            this.RefreshOperationsEvent(this.operation.OperationTypeId);
             this.Close();
         }
-
     }
 }

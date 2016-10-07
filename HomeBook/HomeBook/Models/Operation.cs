@@ -49,8 +49,6 @@
 
         public double? ConvertedValue { get; set; }
 
-        public double? ConvertedSalary { get; set; }
-
         public int UtilityId { get; set; }
 
         public virtual Utility Utility { get; set; }

@@ -111,6 +111,8 @@
             }
         }
 
+        public virtual SalaryOperationType SalaryOperationType { get; set; }
+
         public bool IsConvert => SalaryOperationTypeId == 1;
 
         public int CurrencyId
@@ -150,17 +152,6 @@
         }
 
         public double? ConvertedSalary => this.ConvertedValue * this.Sum;
-
-        //public double ConvertedSalary
-        //{
-        //    get { return _convertedSalary; }
-        //    set
-        //    {
-        //        if (value == _convertedSalary) return;
-        //        _convertedSalary = value;
-        //        NotifyPropertyChanged();
-        //    }
-        //}
 
         public int UtilityId
         {

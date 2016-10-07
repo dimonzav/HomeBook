@@ -27,10 +27,16 @@ namespace HomeBook
             InitializeComponent();
 
             this._repo = new Repo();
+        }
 
-            var operations = this._repo.GetOperations();
+        void tabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var currentSelectedTabIndex = tabCtrl.SelectedIndex;
 
-            dgProducts.ItemsSource = operations;
+            if (e.Source is TabControl)
+            {
+                this.RefreshOperations(currentSelectedTabIndex);
+            }
         }
 
         private void btnAddOperation_Click(object sender, RoutedEventArgs e)
@@ -41,10 +47,34 @@ namespace HomeBook
             add.ShowDialog();
         }
 
-        private void RefreshOperations()
+        private void RefreshOperations(int operationTypeId)
         {
-            dgProducts.ItemsSource = this._repo.GetOperations();
-            dgProducts.Items.Refresh();
+            if (operationTypeId == 0)
+            {
+                dgProducts.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
+                dgProducts.Items.Refresh();
+            }
+            else if (operationTypeId == 1)
+            {
+                dgServices.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
+                dgServices.Items.Refresh();
+            }
+            else if (operationTypeId == 2)
+            {
+                dgSalary.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
+                dgSalary.Items.Refresh();
+            }
+            else if (operationTypeId == 3)
+            {
+                dgBank.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
+                dgBank.Items.Refresh();
+            }
+            else if (operationTypeId == 4)
+            {
+                dgUtilities.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
+                dgUtilities.Items.Refresh();
+            }
+            
         }
     }
 }

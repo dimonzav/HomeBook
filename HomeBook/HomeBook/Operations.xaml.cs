@@ -143,5 +143,12 @@ namespace HomeBook
                 }
             }
         }
+
+        private void btnBackToHome_Click(object sender, RoutedEventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Close();
+        }
     }
 }

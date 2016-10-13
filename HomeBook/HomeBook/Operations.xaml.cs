@@ -22,7 +22,7 @@ namespace HomeBook
     public partial class Operations : Window
     {
         private Repo _repo;
-        private string selectedOperationId;
+        private OperationModel selectedOperation;
 
         public Operations()
         {
@@ -76,25 +76,71 @@ namespace HomeBook
                 dgUtilities.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
                 dgUtilities.Items.Refresh();
             }
-            
+        }
+
+        private void dgProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedOperation = dgProducts.SelectedItem as OperationModel;
+        }
+
+        private void dgServices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedOperation = dgServices.SelectedItem as OperationModel;
         }
 
         private void dgSalary_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.selectedOperationId = (dgSalary.SelectedItem as OperationModel).OperationId;
+            this.selectedOperation = dgSalary.SelectedItem as OperationModel;
+        }
+
+        private void dgBank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedOperation = dgBank.SelectedItem as OperationModel;
+        }
+
+        private void dgUtilities_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedOperation = dgUtilities.SelectedItem as OperationModel;
         }
 
         private void btnRemoveOperation_Click(object sender, RoutedEventArgs e)
         {
-            var result = this._repo.DeleteOperation(selectedOperationId);
-
-            var operations = this._repo.GetOperations(3);
-            dgSalary.SelectedItem = operations[0];
-
-            if (result)
+            if (this.selectedOperation != null)
             {
-                dgSalary.ItemsSource = operations;
-                dgSalary.Items.Refresh();
+                var result = this._repo.DeleteOperation(selectedOperation.OperationId);
+
+                var operations = this._repo.GetOperations(selectedOperation.OperationTypeId);
+
+                if (selectedOperation.OperationTypeId == 1)
+                {
+                    dgProducts.SelectedItem = operations[0];
+                    dgProducts.ItemsSource = operations;
+                    dgProducts.Items.Refresh();
+                }
+                else if (selectedOperation.OperationTypeId == 2)
+                {
+                    dgServices.SelectedItem = operations[0];
+                    dgServices.ItemsSource = operations;
+                    dgServices.Items.Refresh();
+                }
+                else if (selectedOperation.OperationTypeId == 3)
+                {
+                    dgSalary.SelectedItem = operations[0];
+                    dgSalary.ItemsSource = operations;
+                    dgSalary.Items.Refresh();
+                }
+                else if (selectedOperation.OperationTypeId == 4)
+                {
+                    dgBank.SelectedItem = operations[0];
+                    dgBank.ItemsSource = operations;
+                    dgBank.Items.Refresh();
+                }
+                else if (selectedOperation.OperationTypeId == 5)
+                {
+                    dgUtilities.SelectedItem = operations[0];
+                    dgUtilities.ItemsSource = operations;
+                    dgUtilities.Items.Refresh();
+                }
             }
         }
     }

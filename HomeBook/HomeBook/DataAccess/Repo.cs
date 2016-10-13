@@ -89,60 +89,7 @@
             {
                 foreach (var operation in operationsDb)
                 {
-                    OperationModel model = new OperationModel
-                    {
-                        OperationId = operation.OperationId,
-                        Name = operation.Name,
-                        OperationTypeId = operation.OperationTypeId,
-                        OperationTypeModel = new OperationTypeModel(operation.OperationType),
-                        Date = operation.Date,
-                        Sum = operation.Sum,
-                        SalaryOperationTypeId = operation.SalaryOperationTypeId,
-                        SalaryOperationType = operation.SalaryOperationType,
-                        CurrencyId = operation.CurrencyId,
-                        Currency = operation.Currency,
-                        ConvertedCurrencyId = operation.ConvertedCurrencyId,
-                        ConvertedValue = operation.ConvertedValue,
-                        BankOperationTypeId = operation.BankOperationTypeId,
-                        BankOperationType = operation.BankOperationType,
-                        BankAccountId = operation.BankAccountId,
-                        BankAccount = operation.BankAccount,
-                        UtilityId = operation.UtilityId,
-                        Utility = operation.Utility
-                    };
-
-                    if(operation.OperationTypeId == 1)
-                    {
-                        List<OperationProductModel> tempList = new List<OperationProductModel>();
-
-                        if (operation.OperationProducts.Count > 0)
-                        {
-                            foreach (var product in operation.OperationProducts)
-                            {
-                                OperationProductModel productModel = new OperationProductModel(product);
-
-                                tempList.Add(productModel);
-                            }
-
-                            model.OperationProducts = tempList.ToArray();
-                        }
-                    }
-                    else if (operation.OperationTypeId == 2)
-                    {
-                        List<OperationServiceModel> tempList = new List<OperationServiceModel>();
-
-                        if (operation.OperationServices.Count > 0)
-                        {
-                            foreach (var product in operation.OperationServices)
-                            {
-                                OperationServiceModel productModel = new OperationServiceModel(product);
-
-                                tempList.Add(productModel);
-                            }
-
-                            model.OperationServices = tempList.ToArray();
-                        }
-                    }
+                    OperationModel model = new OperationModel(operation);
 
                     operations.Add(model);
                 }
@@ -277,28 +224,22 @@
 
                 List<OperationModel> models = new List<OperationModel>();
 
-                var operationsQuery = Enumerable.Empty<Operation>().AsQueryable();
+                var operationsQuery = this.context.Operations.Where(o => o.OperationTypeId == reportModel.OperationTypeId + 1 && !o.IsDeleted);
 
-                if (reportModel.OperationTypeId == 0)
+                if (!reportModel.IsForAllPeriod)
                 {
-                    if (reportModel.IsForAllPeriod)
+                    if (reportModel.From != null)
                     {
-                        operationsQuery = this.context.Operations.Where(o => o.OperationTypeId == 1);
+                        operationsQuery = operationsQuery.Where(o => o.Date >= reportModel.From);
                     }
-                    else {
-                        if (reportModel.From != null)
-                        {
-                            operationsQuery = operationsQuery.Where(o => o.Date >= reportModel.From);
-                        }
 
-                        if (reportModel.To != null)
-                        {
-                            operationsQuery = operationsQuery.Where(o => o.Date <= reportModel.From);
-                        }
+                    if (reportModel.To != null)
+                    {
+                        operationsQuery = operationsQuery.Where(o => o.Date <= reportModel.From);
                     }
                 }
 
-                operationsDb = operationsQuery.ToList();
+                operationsDb = operationsQuery.OrderByDescending(o => o.Date).ToList();
 
                 if (operationsDb.Count() > 0)
                 {

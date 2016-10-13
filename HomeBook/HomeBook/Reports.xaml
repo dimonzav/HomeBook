@@ -27,7 +27,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TabControl x:Name="tabCtrl" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" SelectionChanged="tabCtrl_SelectionChanged" SelectedIndex="{Binding OperationTypeId}">
+        <TabControl x:Name="tabCtrl" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" SelectedIndex="{Binding OperationTypeId}">
             <TabItem Header="Products" Width="163">
                 <DataGrid x:Name="dgProducts" Grid.Row="1" AutoGenerateColumns="False">
                     <DataGrid.Columns>
@@ -112,7 +112,7 @@
             </TabItem>
         </TabControl>
 
-        <Button x:Name="btnBackToHome" Content="Back to Home" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" Height="25" FontSize="12" Foreground="#FFE0B030" />
+        <Button x:Name="btnBackToHome" Content="Back to Home" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" Height="25" FontSize="12" Foreground="#FFE0B030" Click="btnBackToHome_Click" />
         <Label x:Name="labelFromDate" Content="From" Grid.Row="0" Grid.Column="1" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <DatePicker x:Name="dpFrom" SelectedDate="{Binding From}" IsEnabled="{Binding IsForAllPeriod, Converter={StaticResource BoolTurnConverter}}" Grid.Row="0" Grid.Column="1" FirstDayOfWeek="Monday" SelectedDateFormat="Short" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,7,0,8" Width="138" />
         <Label x:Name="labelToDate" Content="To" Grid.Row="1" Grid.Column="1" Margin="10, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" />

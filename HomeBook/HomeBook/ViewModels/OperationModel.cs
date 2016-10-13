@@ -36,19 +36,40 @@
 
         public OperationModel(Operation operation)
         {
-            this.OperationTypeId = operation.OperationTypeId;
+            this.OperationId = operation.OperationId;
             this.Name = operation.Name;
             this.OperationTypeId = operation.OperationTypeId;
             this.OperationTypeModel = new OperationTypeModel(operation.OperationType);
             this.Date = operation.Date;
             this.Sum = operation.Sum;
+            this.SalaryOperationTypeId = operation.SalaryOperationTypeId;
+            this.SalaryOperationType = operation.SalaryOperationType;
+            this.CurrencyId = operation.CurrencyId;
+            this.Currency = operation.Currency;
+            this.ConvertedCurrencyId = operation.ConvertedCurrencyId;
+            this.ConvertedValue = operation.ConvertedValue;
+            this.BankOperationTypeId = operation.BankOperationTypeId;
+            this.BankOperationType = operation.BankOperationType;
+            this.BankAccountId = operation.BankAccountId;
+            this.BankAccount = operation.BankAccount;
+            this.UtilityId = operation.UtilityId;
+            this.Utility = operation.Utility;
             this.OperationProducts = new List<OperationProductModel>();
+            this.OperationServices = new List<OperationServiceModel>();
 
-            if(operation.OperationProducts.Count > 0)
+            if (operation.OperationProducts.Count > 0)
             {
                 foreach (var prod in operation.OperationProducts)
                 {
                     this.OperationProducts.Add(new OperationProductModel(prod));
+                }
+            }
+
+            if (operation.OperationServices.Count > 0)
+            {
+                foreach (var prod in operation.OperationServices)
+                {
+                    this.OperationServices.Add(new OperationServiceModel(prod));
                 }
             }
         }

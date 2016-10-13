@@ -33,16 +33,49 @@ namespace HomeBook
             this.reportModel = this.DataContext as ReportModel;
         }
 
-        void tabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.selectedTabIndex = tabCtrl.SelectedIndex;
-        }
-
         private void bntGetReport_Click(object sender, RoutedEventArgs e)
         {
             var result = this._repo.GetReportForOperations(this.reportModel);
 
-            dgProducts.ItemsSource = result;
+            if (result != null && result.Count > 0)
+            {
+                if (this.reportModel.OperationTypeId == 0)
+                {
+                    dgProducts.ItemsSource = result;
+                    dgProducts.Items.Refresh();
+                }
+                else if (this.reportModel.OperationTypeId == 1)
+                {
+                    dgServices.ItemsSource = result;
+                    dgServices.Items.Refresh();
+                }
+                else if (this.reportModel.OperationTypeId == 2)
+                {
+                    dgSalary.ItemsSource = result;
+                    dgSalary.Items.Refresh();
+                }
+                else if (this.reportModel.OperationTypeId == 3)
+                {
+                    dgBank.ItemsSource = result;
+                    dgBank.Items.Refresh();
+                }
+                else if (this.reportModel.OperationTypeId == 4)
+                {
+                    dgUtilities.ItemsSource = result;
+                    dgUtilities.Items.Refresh();
+                }
+            }
+            else
+            {
+                var resultMessageBox = MessageBox.Show("There is no operation by your request", "Attention!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private void btnBackToHome_Click(object sender, RoutedEventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Close();
         }
     }
 }

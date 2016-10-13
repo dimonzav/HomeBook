@@ -12,6 +12,10 @@
     {
         private bool _isForAllPeriod;
         private int _operationTypeId;
+        private double? _sum;
+        private bool _isEqual;
+        private bool _isGreater;
+        private bool _isLess;
 
         public ReportModel()
         {
@@ -26,6 +30,50 @@
             {
                 if (value == _operationTypeId) return;
                 _operationTypeId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public double? Sum
+        {
+            get { return _sum; }
+            set
+            {
+                if (value == _sum) return;
+                _sum = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsEqual
+        {
+            get { return _isEqual; }
+            set
+            {
+                if (value == _isEqual) return;
+                _isEqual = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsGreater
+        {
+            get { return _isGreater; }
+            set
+            {
+                if (value == _isGreater) return;
+                _isGreater = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsLess
+        {
+            get { return _isLess; }
+            set
+            {
+                if (value == _isLess) return;
+                _isLess = value;
                 NotifyPropertyChanged();
             }
         }

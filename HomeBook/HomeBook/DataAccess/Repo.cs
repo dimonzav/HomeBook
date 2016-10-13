@@ -239,6 +239,22 @@
                     }
                 }
 
+                if (reportModel.Sum != null && reportModel.Sum > 0)
+                {
+                    if (reportModel.IsEqual)
+                    {
+                        operationsQuery = operationsQuery.Where(o => o.Sum == reportModel.Sum);
+                    }
+                    else if (reportModel.IsGreater)
+                    {
+                        operationsQuery = operationsQuery.Where(o => o.Sum > reportModel.Sum);
+                    }
+                    else if (reportModel.IsLess)
+                    {
+                        operationsQuery = operationsQuery.Where(o => o.Sum < reportModel.Sum);
+                    }
+                }
+
                 operationsDb = operationsQuery.OrderByDescending(o => o.Date).ToList();
 
                 if (operationsDb.Count() > 0)

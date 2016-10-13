@@ -113,12 +113,17 @@
         </TabControl>
 
         <Button x:Name="btnBackToHome" Content="Back to Home" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" Height="25" FontSize="12" Foreground="#FFE0B030" Click="btnBackToHome_Click" />
-        <Label x:Name="labelFromDate" Content="From" Grid.Row="0" Grid.Column="1" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <DatePicker x:Name="dpFrom" SelectedDate="{Binding From}" IsEnabled="{Binding IsForAllPeriod, Converter={StaticResource BoolTurnConverter}}" Grid.Row="0" Grid.Column="1" FirstDayOfWeek="Monday" SelectedDateFormat="Short" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,7,0,8" Width="138" />
+        <Label x:Name="labelFromDate" Content="From" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <DatePicker x:Name="dpFrom" SelectedDate="{Binding From, StringFormat=MM/dd/yyyy}" IsEnabled="{Binding IsForAllPeriod, Converter={StaticResource BoolTurnConverter}}" Grid.Row="0" Grid.Column="1" FirstDayOfWeek="Monday" SelectedDateFormat="Short" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,7,0,8" Width="138" />
         <Label x:Name="labelToDate" Content="To" Grid.Row="1" Grid.Column="1" Margin="10, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <DatePicker x:Name="dpTo" SelectedDate="{Binding To}" IsEnabled="{Binding IsForAllPeriod, Converter={StaticResource BoolTurnConverter}}" Grid.Row="1" Grid.Column="1" FirstDayOfWeek="Monday" SelectedDateFormat="Short" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,7,0,8" Width="138" />
+        <DatePicker x:Name="dpTo" SelectedDate="{Binding To, StringFormat=MM/dd/yyyy}" IsEnabled="{Binding IsForAllPeriod, Converter={StaticResource BoolTurnConverter}}" Grid.Row="1" Grid.Column="1" FirstDayOfWeek="Monday" SelectedDateFormat="Short" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,7,0,8" Width="138" />
         <CheckBox IsChecked="{Binding IsForAllPeriod}" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">For all period</CheckBox>
-        <CheckBox IsChecked="{Binding IsSummary}" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">Summary</CheckBox>
+        <!--<CheckBox IsChecked="{Binding IsSummary}" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">Summary</CheckBox>-->
+        <Label x:Name="forSumReport" Content="Sum:" Grid.Row="3" Grid.Column="1" Margin="10,7,0,0" />
+        <TextBox x:Name="tbSumReport" Grid.Row="3" Grid.Column="1" Width="90" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,20,0" TextWrapping="Wrap" Text="{Binding Sum}" />
+        <RadioButton GroupName="sum" Content="Equal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,20" IsChecked="{Binding IsEqual}" />
+        <RadioButton GroupName="sum" Content="Greater" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,10,20" IsChecked="{Binding IsGreater}" />
+        <RadioButton GroupName="sum" Content="Less" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,15,20" IsChecked="{Binding IsLess}" />
         <Button x:Name="bntGetReport" Content="Get report" Grid.Row="4" Grid.Column="1" FontSize="16" Foreground="#FFE0B030" Click="bntGetReport_Click" />
 
     </Grid>

@@ -279,7 +279,7 @@
 
                 var operationsQuery = Enumerable.Empty<Operation>().AsQueryable();
 
-                if (reportModel.IsProductOperations)
+                if (reportModel.OperationTypeId == 0)
                 {
                     if (reportModel.IsForAllPeriod)
                     {

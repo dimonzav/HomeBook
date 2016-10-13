@@ -10,83 +10,22 @@
 
     public class ReportModel : INotifyPropertyChanged
     {
-        private bool _isProductOperations;
-        private bool _isSalary;
-        private bool _isCosts;
-        private bool _isUtilities;
-        private bool _isBank;
         private bool _isForAllPeriod;
-        private int _typeId = 1;
+        private int _operationTypeId;
 
         public ReportModel()
         {
-            this.TypeId = 1;
             this.From = DateTime.Now;
             this.To = DateTime.Now;
         }
 
-        public int TypeId
+        public int OperationTypeId
         {
-            get { return _typeId; }
+            get { return _operationTypeId; }
             set
             {
-                if (value == _typeId) return;
-                _typeId = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public bool IsProductOperations
-        {
-            get { return _isProductOperations; }
-            set
-            {
-                if (value == _isProductOperations) return;
-                _isProductOperations = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public bool IsSalary
-        {
-            get { return _isSalary; }
-            set
-            {
-                if (value == _isSalary) return;
-                _isSalary = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public bool IsCosts
-        {
-            get { return _isCosts; }
-            set
-            {
-                if (value == _isCosts) return;
-                _isCosts = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public bool IsUtilities
-        {
-            get { return _isUtilities; }
-            set
-            {
-                if (value == _isUtilities) return;
-                _isUtilities = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public bool IsBank
-        {
-            get { return _isBank; }
-            set
-            {
-                if (value == _isBank) return;
-                _isBank = value;
+                if (value == _operationTypeId) return;
+                _operationTypeId = value;
                 NotifyPropertyChanged();
             }
         }

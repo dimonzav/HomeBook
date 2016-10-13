@@ -23,6 +23,7 @@ namespace HomeBook
     {
         private Repo _repo;
         private ReportModel reportModel;
+        private int selectedTabIndex;
         public Reports()
         {
             InitializeComponent();
@@ -32,11 +33,16 @@ namespace HomeBook
             this.reportModel = this.DataContext as ReportModel;
         }
 
+        void tabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedTabIndex = tabCtrl.SelectedIndex;
+        }
+
         private void bntGetReport_Click(object sender, RoutedEventArgs e)
         {
             var result = this._repo.GetReportForOperations(this.reportModel);
 
-            dgProdReports.ItemsSource = result;
+            dgProducts.ItemsSource = result;
         }
     }
 }

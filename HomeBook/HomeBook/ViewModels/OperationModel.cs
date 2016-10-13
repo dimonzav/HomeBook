@@ -23,7 +23,7 @@
         private int _utilityTypeId;
         private int _bankOperationTypeId;
         private int _bankTypeId;
-        private bool _isProductOperations;
+        private bool _isProductOperations = true;
         private bool _isSalary;
         private bool _isServiceOperations;
         private bool _isUtilities;

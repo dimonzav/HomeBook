@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HomeBook.ViewModels;
 
 namespace HomeBook
 {
@@ -19,6 +20,19 @@ namespace HomeBook
     /// </summary>
     public partial class AddBankAccounts : Window
     {
+        private BankAccountModel bankAccountModel;
+
+        public delegate void RefreshDel(int bankAccountTypeId);
+        public event RefreshDel RefreshBankAccountsEvent;
+
+        public AddBankAccounts(int _bankAccountTypeId)
+        {
+            InitializeComponent();
+
+            this.bankAccountModel = this.DataContext as BankAccountModel;
+            this.bankAccountModel.BankAccountTypeId = _bankAccountTypeId;
+        }
+
         public AddBankAccounts()
         {
             InitializeComponent();

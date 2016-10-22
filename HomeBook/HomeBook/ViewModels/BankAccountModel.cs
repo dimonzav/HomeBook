@@ -22,8 +22,7 @@
 
         public BankAccountModel()
         {
-            this.IsCreditDeposit = true;
-            this.IsDeposit = true;
+
         }
 
         public BankAccountModel(BankAccount account)

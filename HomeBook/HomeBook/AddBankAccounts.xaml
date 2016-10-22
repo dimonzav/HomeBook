@@ -23,9 +23,10 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -60,5 +61,8 @@
         <TextBox x:Name="tbDebt" Grid.Row="2" Grid.Column="1" Width="150" Height="25" HorizontalAlignment="left" Margin="55.5,25,0,0" TextWrapping="Wrap" Text="{Binding CreditDebt}" Visibility="{Binding IsCredit, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <Label x:Name="forDepositPercentageSum" Content="Percentage sum" Grid.Row="2" Grid.Column="1" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="55.5,-20,0,0" Visibility="{Binding IsDeposit, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <TextBox x:Name="tbDepositPercentageSum" Grid.Row="2" Grid.Column="1" Width="150" Height="25" HorizontalAlignment="Left" Margin="55.5,25,0,0" TextWrapping="Wrap" Text="{Binding DepositPercentageSum}" Visibility="{Binding IsDeposit, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <Button x:Name="btnAddBankAccount" Content="Add" Grid.Row="3" Grid.Column="0" Width="130" Foreground="#FFE0B33B" Height="30" FontFamily="Cooper Black" FontSize="16" />
+        <Button x:Name="btnCancel" Content="Cancel" Grid.Row="3" Grid.Column="1" Width="130" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Height="30" />
     </Grid>
 </Window>

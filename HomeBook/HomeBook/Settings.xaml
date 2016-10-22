@@ -90,7 +90,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label x:Name="forSalaryCard" Content="Salary Cards" Grid.Row="1" Grid.Column="0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" HorizontalAlignment="Left" Margin="20,0,0,0" />
-                    <Button x:Name="btnAddSalaryCard" Content="Add" Grid.Row="1" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" />
+                    <Button x:Name="btnAddSalaryCard" Content="Add" Grid.Row="1" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" Click="btnAddBankAccount" Tag="1" />
                     <Button x:Name="btnRemoveSalaryCard" Content="Remove" Grid.Row="1" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgSalaryCards" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
@@ -100,9 +100,9 @@
                             <DataGridTextColumn Header="Balance" Binding="{Binding CardBalance}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    
+
                     <Label x:Name="forCreditCard" Content="Credit Cards" Grid.Row="3" Grid.Column="0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" HorizontalAlignment="Left" Margin="20,0,0,0" />
-                    <Button x:Name="btnAddCreditCard" Content="Add" Grid.Row="3" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" />
+                    <Button x:Name="btnAddCreditCard" Content="Add" Grid.Row="3" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" Click="btnAddBankAccount" Tag="2" />
                     <Button x:Name="btnRemoveCreditCard" Content="Remove" Grid.Row="3" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgCreditCards" Grid.Row="4" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
@@ -113,9 +113,9 @@
                             <DataGridTextColumn Header="Limit" Binding="{Binding CreditCardLimit}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    
+
                     <Label x:Name="forDebitCard" Content="Debit Cards" Grid.Row="5" Grid.Column="0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" HorizontalAlignment="Left" Margin="20,0,0,0" />
-                    <Button x:Name="btnAddDebitCard" Content="Add" Grid.Row="5" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" />
+                    <Button x:Name="btnAddDebitCard" Content="Add" Grid.Row="5" Grid.Column="0" Width="50" HorizontalAlignment="Left" Margin="160,8,0,8" Click="btnAddBankAccount" Tag="3" />
                     <Button x:Name="btnRemoveDebitCard" Content="Remove" Grid.Row="5" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgDebitCards" Grid.Row="6" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
@@ -125,9 +125,9 @@
                             <DataGridTextColumn Header="Balance" Binding="{Binding Balance}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    
+
                     <Label x:Name="forCredits" Content="Credits" Grid.Row="7" Grid.Column="0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" HorizontalAlignment="Left" Margin="20,0,0,0" />
-                    <Button x:Name="btnAddCredit" Content="Add" Grid.Row="7" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" />
+                    <Button x:Name="btnAddCredit" Content="Add" Grid.Row="7" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" Click="btnAddBankAccount" Tag="4" />
                     <Button x:Name="btnRemoveCredit" Content="Remove" Grid.Row="7" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgCredits" Grid.Row="8" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
@@ -139,9 +139,9 @@
                             <DataGridTextColumn Header="Debt" Binding="{Binding Debt}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    
+
                     <Label x:Name="forDeposits" Content="Deposits" Grid.Row="9" Grid.Column="0" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" HorizontalAlignment="Left" Margin="20,0,0,0" />
-                    <Button x:Name="btnAddDeposit" Content="Add" Grid.Row="9" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" />
+                    <Button x:Name="btnAddDeposit" Content="Add" Grid.Row="9" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="160,0,0,0" Click="btnAddBankAccount" Tag="5" />
                     <Button x:Name="btnRemoveDeposit" Content="Remove" Grid.Row="9" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgDeposits" Grid.Row="10" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>

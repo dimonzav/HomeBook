@@ -27,7 +27,7 @@ namespace HomeBook.Migrations
 
             context.BankOperationTypes.AddOrUpdate(this.BankOperations());
 
-            context.BankAccounts.AddOrUpdate(this.BankAccounts());
+            context.BankAccountTypes.AddOrUpdate(this.BankAccountTypes());
 
             context.Utilities.AddOrUpdate(this.Utilities());
 
@@ -112,16 +112,18 @@ namespace HomeBook.Migrations
             return bankOperations.ToArray();
         }
 
-        private BankAccount[] BankAccounts()
+        private BankAccountType[] BankAccountTypes()
         {
-            List<BankAccount> accounts = new List<BankAccount>
+            List<BankAccountType> accountTypes = new List<BankAccountType>
             {
-                new BankAccount { BankAccountId = 1, Name = "OTP" },
-                new BankAccount { BankAccountId = 2, Name = "PrivatBank" },
-                new BankAccount { BankAccountId = 3, Name = "UniCredit" }
+                new BankAccountType { BankAccountTypeId = 1, TypeName = "Salary card" },
+                new BankAccountType { BankAccountTypeId = 2, TypeName = "Credit card" },
+                new BankAccountType { BankAccountTypeId = 3, TypeName = "Debit card" },
+                new BankAccountType { BankAccountTypeId = 4, TypeName = "Credit" },
+                new BankAccountType { BankAccountTypeId = 5, TypeName = "Deposit" }
             };
 
-            return accounts.ToArray();
+            return accountTypes.ToArray();
         }
 
         private SalaryOperationType[] SalaryTypes()

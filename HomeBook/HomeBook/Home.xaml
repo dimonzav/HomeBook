@@ -58,7 +58,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnProduct" Content="Products" Grid.Row="1" Grid.Column="2" Width="140" Height="100" FontFamily="Cooper Black" FontSize="24" OpacityMask="Black" Click="btnProduct_Click">
+        <Button x:Name="btnProduct" Content="Settings" Grid.Row="1" Grid.Column="2" Width="140" Height="100" FontFamily="Cooper Black" FontSize="24" OpacityMask="Black" Click="btnProduct_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
             </Button.Effect>

@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddBankAccounts.xaml.cs">
+      <DependentUpon>AddBankAccounts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddOperation.xaml.cs">
       <DependentUpon>AddOperation.xaml</DependentUpon>
     </Compile>
@@ -72,6 +75,7 @@
     </Compile>
     <Compile Include="BoolTurnConverter.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\BankAccountType.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\BankOperationType.cs" />
     <Compile Include="Models\Currency.cs" />
@@ -82,6 +86,7 @@
     <Compile Include="Models\SalaryOperationType.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Utility.cs" />
+    <Compile Include="MultiBooleanVisibilityConverter.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>
@@ -97,11 +102,16 @@
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BankAccountModel.cs" />
     <Compile Include="ViewModels\OperationModel.cs" />
     <Compile Include="ViewModels\OperationProductModel.cs" />
     <Compile Include="ViewModels\OperationServiceModel.cs" />
     <Compile Include="ViewModels\OperationTypeModel.cs" />
     <Compile Include="ViewModels\ReportModel.cs" />
+    <Page Include="AddBankAccounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddOperation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

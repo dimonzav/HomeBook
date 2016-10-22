@@ -1,16 +1,35 @@
 ﻿namespace HomeBook.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class BankAccount
     {
         [Key]
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int BankAccountId { get; set; }
+        public string BankAccountId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public int BankAccountTypeId { get; set; }
+
+        public virtual BankAccountType BankAccountType { get; set; }
+
+        [Required]
+        public string BankName { get; set; }
+
+        [Required]
+        public string AccountNumber { get; set; }
+
+        public string CardExpired { get; set; }
+
+        public double CardBalance { get; set; }
+
+        public int Term { get; set; }
+
+        public double AccountSum { get; set; }
+
+        public double Percentage { get; set; }
+
+        public double DepositPercentageSum { get; set; }
+
+        public double CreditDebt { get; set; }
     }
 }

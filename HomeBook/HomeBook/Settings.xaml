@@ -13,8 +13,6 @@
                 <GradientStop Color="#FFFFA2A2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        
-        
 
         <TabControl Grid.Column="0" Grid.Row="0">
             <TabItem Header="Products/Services" Width="300">
@@ -71,7 +69,7 @@
                     <ListBox x:Name="lbUtilities" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Width="200" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Back accounts" Width="300">
+            <TabItem Header="Bank accounts" Width="300">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -96,10 +94,10 @@
                     <Button x:Name="btnRemoveSalaryCard" Content="Remove" Grid.Row="1" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgSalaryCards" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Bank" Binding="{Binding Bank}" Width="200" />
-                            <DataGridTextColumn Header="Card number" Binding="{Binding CardNumber}" Width="200" />
-                            <DataGridTextColumn Header="Expired" Binding="{Binding Expired}" Width="100" />
-                            <DataGridTextColumn Header="Balance" Binding="{Binding Balance}" Width="150" />
+                            <DataGridTextColumn Header="Bank" Binding="{Binding BankName}" Width="200" />
+                            <DataGridTextColumn Header="Card number" Binding="{Binding AccountNumber}" Width="200" />
+                            <DataGridTextColumn Header="Expired" Binding="{Binding CardExpired}" Width="100" />
+                            <DataGridTextColumn Header="Balance" Binding="{Binding CardBalance}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
                     
@@ -108,11 +106,11 @@
                     <Button x:Name="btnRemoveCreditCard" Content="Remove" Grid.Row="3" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgCreditCards" Grid.Row="4" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Bank" Binding="{Binding Bank}" Width="200" />
-                            <DataGridTextColumn Header="Card number" Binding="{Binding CardNumber}" Width="200" />
-                            <DataGridTextColumn Header="Expired" Binding="{Binding Expired}" Width="100" />
-                            <DataGridTextColumn Header="Limit" Binding="{Binding Limit}" Width="100" />
-                            <DataGridTextColumn Header="Balance" Binding="{Binding Balance}" Width="150" />
+                            <DataGridTextColumn Header="Bank" Binding="{Binding BankName}" Width="200" />
+                            <DataGridTextColumn Header="Card number" Binding="{Binding AccountNumber}" Width="200" />
+                            <DataGridTextColumn Header="Expired" Binding="{Binding CardExpired}" Width="100" />
+                            <DataGridTextColumn Header="Balance" Binding="{Binding CardBalance}" Width="100" />
+                            <DataGridTextColumn Header="Limit" Binding="{Binding CreditCardLimit}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
                     
@@ -121,9 +119,9 @@
                     <Button x:Name="btnRemoveDebitCard" Content="Remove" Grid.Row="5" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgDebitCards" Grid.Row="6" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Bank" Binding="{Binding Bank}" Width="200" />
-                            <DataGridTextColumn Header="Card number" Binding="{Binding CardNumber}" Width="200" />
-                            <DataGridTextColumn Header="Expired" Binding="{Binding Expired}" Width="100" />
+                            <DataGridTextColumn Header="Bank" Binding="{Binding BankName}" Width="200" />
+                            <DataGridTextColumn Header="Card number" Binding="{Binding AccountNumber}" Width="200" />
+                            <DataGridTextColumn Header="Expired" Binding="{Binding CardExpired}" Width="100" />
                             <DataGridTextColumn Header="Balance" Binding="{Binding Balance}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
@@ -133,10 +131,11 @@
                     <Button x:Name="btnRemoveCredit" Content="Remove" Grid.Row="7" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgCredits" Grid.Row="8" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Bank" Binding="{Binding Bank}" Width="200" />
-                            <DataGridTextColumn Header="Credit Agreement Number" Binding="{Binding CreditAgreementNumber}" Width="200" />
-                            <DataGridTextColumn Header="Credit body" Binding="{Binding CreditBody}" Width="120" />
-                            <DataGridTextColumn Header="Payments Amount" Binding="{Binding PaymentsAmount}" Width="120" />
+                            <DataGridTextColumn Header="Bank" Binding="{Binding BankName}" Width="200" />
+                            <DataGridTextColumn Header="Credit Agreement Number" Binding="{Binding AccountNumber}" Width="200" />
+                            <DataGridTextColumn Header="Credit term" Binding="{Binding Term}" Width="120" />
+                            <DataGridTextColumn Header="Percentage" Binding="{Binding Percentage}" Width="100" />
+                            <DataGridTextColumn Header="Credit body" Binding="{Binding AccountAmount}" Width="150" />
                             <DataGridTextColumn Header="Debt" Binding="{Binding Debt}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
@@ -146,11 +145,12 @@
                     <Button x:Name="btnRemoveDeposit" Content="Remove" Grid.Row="9" Grid.Column="0" Width="50" Height="25" HorizontalAlignment="Left" Margin="230,0,0,0" />
                     <DataGrid x:Name="dgDeposits" Grid.Row="10" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Bank" Binding="{Binding Bank}" Width="200" />
-                            <DataGridTextColumn Header="Deposit Agreement Number" Binding="{Binding DepositAgreementNumber}" Width="200" />
-                            <DataGridTextColumn Header="Deposit term" Binding="{Binding Term}" Width="100" />
-                            <DataGridTextColumn Header="Deposit Sum" Binding="{Binding Sum}" Width="150" />
-                            <DataGridTextColumn Header="Percentages" Binding="{Binding Percentages}" Width="150" />
+                            <DataGridTextColumn Header="Bank" Binding="{Binding BankName}" Width="200" />
+                            <DataGridTextColumn Header="Deposit Agreement Number" Binding="{Binding AccountNumber}" Width="200" />
+                            <DataGridTextColumn Header="Deposit term" Binding="{Binding Term}" Width="120" />
+                            <DataGridTextColumn Header="Percentage" Binding="{Binding Percentage}" Width="100" />
+                            <DataGridTextColumn Header="Deposit amount" Binding="{Binding AccountAmount}" Width="150" />
+                            <DataGridTextColumn Header="Deposit percentage sum" Binding="{Binding DepositPercentageSum}" Width="150" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

@@ -51,7 +51,7 @@
             this.BankOperationTypeId = operation.BankOperationTypeId;
             this.BankOperationType = operation.BankOperationType;
             this.BankAccountId = operation.BankAccountId;
-            this.BankAccount = operation.BankAccount;
+            this.BankAccountModel = new BankAccountModel(operation.BankAccount);
             this.UtilityId = operation.UtilityId;
             this.Utility = operation.Utility;
             this.OperationProducts = new List<OperationProductModel>();
@@ -211,7 +211,7 @@
             }
         }
 
-        public virtual BankAccount BankAccount { get; set; }
+        public virtual BankAccountModel BankAccountModel { get; set; }
 
         [Required]
         public double? Sum

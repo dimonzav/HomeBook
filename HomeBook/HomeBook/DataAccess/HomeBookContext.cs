@@ -37,6 +37,8 @@
 
         public virtual DbSet<BankAccount> BankAccounts { get; set; }
 
+        public virtual DbSet<BankAccountType> BankAccountTypes { get; set; }
+
         public virtual DbSet<SalaryOperationType> SalaryOperationTypes { get; set; }
     }
 }

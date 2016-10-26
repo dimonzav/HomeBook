@@ -272,5 +272,90 @@
 
             return null;
         }
+
+        public bool AddBankAccount(BankAccountModel bankAccountModel)
+        {
+            if(bankAccountModel != null)
+            {
+                BankAccount bankAccount = new BankAccount
+                {
+                    BankAccountId = Guid.NewGuid().ToString(),
+                    BankAccountTypeId = bankAccountModel.BankAccountTypeId,
+                    BankName = bankAccountModel.BankName,
+                    AccountNumber = bankAccountModel.AccountNumber,
+                    CardExpired = bankAccountModel.CardExpired,
+                    CardBalance = bankAccountModel.CardBalance,
+                    Percentage = bankAccountModel.Percentage,
+                    Term = bankAccountModel.Term,
+                    AccountAmount = bankAccountModel.Term,
+                    CreditDebt = bankAccountModel.CreditDebt,
+                    DepositPercentageSum = bankAccountModel.DepositPercentageSum
+                };
+
+                try
+                {
+                    this.context.BankAccounts.Add(bankAccount);
+
+                    return this.context.SaveChanges() > 0;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine(
+                            "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name,
+                            eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine(
+                                "- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName,
+                                ve.ErrorMessage);
+                        }
+                    }
+
+                    throw;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+
+            return false;
+        }
+
+        public List<BankAccountModel> GetBankAccounts(int bankAccountTypeId)
+        {
+            var bankAccountsDb = this.context.BankAccounts
+                .Where(b => b.BankAccountTypeId == bankAccountTypeId && !b.IsDeleted)
+                .ToList();
+
+            List<BankAccountModel> bankAccounts = new List<BankAccountModel>();
+
+            if (bankAccountsDb != null && bankAccountsDb.Count > 0)
+            {
+                foreach (var account in bankAccountsDb)
+                {
+                    BankAccountModel model = new BankAccountModel(account);
+
+                    bankAccounts.Add(model);
+                }
+
+                return bankAccounts;
+            }
+
+            return null;
+        }
+
+        public bool DeleteBankAccount(string bankAccountId)
+        {
+            var deletedBankAccount = this.context.BankAccounts.Where(a => a.BankAccountId == bankAccountId).FirstOrDefault();
+
+            deletedBankAccount.IsDeleted = true;
+
+            return this.context.SaveChanges() > 0;
+        }
     }
 }

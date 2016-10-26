@@ -103,6 +103,7 @@
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BankAccountModel.cs" />
+    <Compile Include="ViewModels\BankAccountTypeModel.cs" />
     <Compile Include="ViewModels\OperationModel.cs" />
     <Compile Include="ViewModels\OperationProductModel.cs" />
     <Compile Include="ViewModels\OperationServiceModel.cs" />

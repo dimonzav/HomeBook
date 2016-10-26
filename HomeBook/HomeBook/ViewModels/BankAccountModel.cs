@@ -27,7 +27,19 @@
 
         public BankAccountModel(BankAccount account)
         {
-            
+            this.BankAccountId = account.BankAccountId;
+            this.BankAccountTypeId = account.BankAccountTypeId;
+            this.BankAccountTypeModel = new BankAccountTypeModel(account.BankAccountType);
+            this.BankName = account.BankName;
+            this.AccountNumber = account.AccountNumber;
+            this.CardExpired = account.CardExpired;
+            this.CardBalance = account.CardBalance;
+            this.CreditCardLimit = account.CreditCardLimit;
+            this.Percentage = account.Percentage;
+            this.Term = account.Term;
+            this.AccountAmount = account.AccountAmount;
+            this.DepositPercentageSum = account.DepositPercentageSum;
+            this.CreditDebt = account.CreditDebt;
         }
 
         [Key]
@@ -50,6 +62,8 @@
                 NotifyPropertyChanged(nameof(this.IsDeposit));
             }
         }
+
+        public virtual BankAccountTypeModel BankAccountTypeModel { get; set; }
 
         public bool IsCard { get; set; }
 

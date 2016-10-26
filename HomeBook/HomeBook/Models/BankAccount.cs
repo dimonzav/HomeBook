@@ -22,14 +22,18 @@
 
         public double CardBalance { get; set; }
 
+        public double CreditCardLimit { get; set; }
+
         public int Term { get; set; }
 
-        public double AccountSum { get; set; }
+        public double AccountAmount { get; set; }
 
         public double Percentage { get; set; }
 
         public double DepositPercentageSum { get; set; }
 
         public double CreditDebt { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

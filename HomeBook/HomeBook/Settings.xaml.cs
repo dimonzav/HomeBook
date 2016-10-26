@@ -22,12 +22,24 @@ namespace HomeBook
     public partial class Settings : Window
     {
         private Repo _repo;
+        private BankAccountModel selectedBankAccount;
 
         public Settings()
         {
             InitializeComponent();
 
             this._repo = new Repo();
+
+            dgSalaryCards.ItemsSource = this._repo.GetBankAccounts(1);
+            dgSalaryCards.DisplayMemberPath = "Name";
+            dgCreditCards.ItemsSource = this._repo.GetBankAccounts(2);
+            dgCreditCards.DisplayMemberPath = "Name";
+            dgDebitCards.ItemsSource = this._repo.GetBankAccounts(3);
+            dgDebitCards.DisplayMemberPath = "Name";
+            dgCredits.ItemsSource = this._repo.GetBankAccounts(4);
+            dgCredits.DisplayMemberPath = "Name";
+            dgDeposits.ItemsSource = this._repo.GetBankAccounts(5);
+            dgDeposits.DisplayMemberPath = "Name";
         }
 
         private void btnAddBankAccount(object sender, RoutedEventArgs e)
@@ -40,31 +52,53 @@ namespace HomeBook
 
         private void RefreshBankAccounts(int bankAccountTypeId)
         {
-            //if (bankAccountTypeId == 0)
-            //{
-            //    dgSalaryCards.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
-            //    dgSalaryCards.Items.Refresh();
-            //}
-            //else if (bankAccountTypeId == 1)
-            //{
-            //    dgCreditCards.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
-            //    dgCreditCards.Items.Refresh();
-            //}
-            //else if (bankAccountTypeId == 2)
-            //{
-            //    dgDebitCards.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
-            //    dgDebitCards.Items.Refresh();
-            //}
-            //else if (bankAccountTypeId == 3)
-            //{
-            //    dgCredits.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
-            //    dgCredits.Items.Refresh();
-            //}
-            //else if (bankAccountTypeId == 4)
-            //{
-            //    dgDeposits.ItemsSource = this._repo.GetOperations(operationTypeId + 1);
-            //    dgDeposits.Items.Refresh();
-            //}
+            if (bankAccountTypeId == 1)
+            {
+                dgSalaryCards.ItemsSource = this._repo.GetBankAccounts(bankAccountTypeId);
+                dgSalaryCards.Items.Refresh();
+            }
+            else if (bankAccountTypeId == 2)
+            {
+                dgCreditCards.ItemsSource = this._repo.GetBankAccounts(bankAccountTypeId);
+                dgCreditCards.Items.Refresh();
+            }
+            else if (bankAccountTypeId == 3)
+            {
+                dgDebitCards.ItemsSource = this._repo.GetBankAccounts(bankAccountTypeId);
+                dgDebitCards.Items.Refresh();
+            }
+            else if (bankAccountTypeId == 4)
+            {
+                dgCredits.ItemsSource = this._repo.GetBankAccounts(bankAccountTypeId);
+                dgCredits.Items.Refresh();
+            }
+            else if (bankAccountTypeId == 5)
+            {
+                dgDeposits.ItemsSource = this._repo.GetBankAccounts(bankAccountTypeId);
+                dgDeposits.Items.Refresh();
+            }
+        }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedBankAccount = ((DataGrid)sender).SelectedItem as BankAccountModel;
+        }
+
+        private void RemoveBankAccount(object sender, RoutedEventArgs e)
+        {
+            if (this.selectedBankAccount != null)
+            {
+                var result = this._repo.DeleteBankAccount(this.selectedBankAccount.BankAccountId);
+
+                if (result)
+                {
+                    this.RefreshBankAccounts(this.selectedBankAccount.BankAccountTypeId);
+                }
+                else
+                {
+                    var resultMessageBox = MessageBox.Show("Bank account is not deleted", "Attention!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
     }
 }

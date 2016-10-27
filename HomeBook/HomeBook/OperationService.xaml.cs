@@ -41,12 +41,12 @@ namespace HomeBook
 
         private void btnAddNewService_Click(object sender, RoutedEventArgs e)
         {
-            AddService addNewService = new AddService();
-            addNewService.RefreshServicesEvent += new AddService.RefreshDel(this.RefreshServices);
+            NewItem addNewService = new NewItem(ItemTypes.Service);
+            addNewService.RefreshEvent += new NewItem.RefreshDel(this.RefreshServices);
             addNewService.ShowDialog();
         }
 
-        private void RefreshServices()
+        private void RefreshServices(int itemType)
         {
             cbServices.ItemsSource = this._repo.GetServices();
             cbServices.Items.Refresh();

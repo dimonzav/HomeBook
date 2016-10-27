@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HomeBook.DataAccess;
 using HomeBook.ViewModels;
+using HomeBook.Models;
 
 namespace HomeBook
 {
@@ -23,12 +24,26 @@ namespace HomeBook
     {
         private Repo _repo;
         private BankAccountModel selectedBankAccount;
+        private object seletedItem;
 
         public Settings()
         {
             InitializeComponent();
 
             this._repo = new Repo();
+
+
+            lbProducts.ItemsSource = this._repo.GetProducts();
+            lbProducts.DisplayMemberPath = "Name";
+            lbServices.ItemsSource = this._repo.GetServices();
+            lbServices.DisplayMemberPath = "Name";
+
+            lbProductUnits.ItemsSource = this._repo.GetProductUnits();
+            lbProductUnits.DisplayMemberPath = "Name";
+            lbCurrencies.ItemsSource = this._repo.GetCurrencies();
+            lbCurrencies.DisplayMemberPath = "Name";
+            lbUtilities.ItemsSource = this._repo.GetUtilities();
+            lbUtilities.DisplayMemberPath = "Name";
 
             dgSalaryCards.ItemsSource = this._repo.GetBankAccounts(1);
             dgSalaryCards.DisplayMemberPath = "Name";
@@ -40,6 +55,78 @@ namespace HomeBook
             dgCredits.DisplayMemberPath = "Name";
             dgDeposits.ItemsSource = this._repo.GetBankAccounts(5);
             dgDeposits.DisplayMemberPath = "Name";
+        }
+
+        private void addNewItem(object sender, RoutedEventArgs e)
+        {
+            var itemType = (ItemTypes)Convert.ToInt32(((Button)sender).Tag);
+            NewItem newProductWindow = new NewItem(itemType);
+            newProductWindow.RefreshEvent += new NewItem.RefreshDel(this.RefreshItems);
+            newProductWindow.ShowDialog();
+        }
+
+        private void RefreshItems(int itemType)
+        {
+            if (itemType == (int)ItemTypes.Product)
+            {
+                lbProducts.ItemsSource = this._repo.GetProducts();
+                lbProducts.Items.Refresh();
+            }
+            else if(itemType == (int)ItemTypes.Service)
+            {
+                lbServices.ItemsSource = this._repo.GetServices();
+                lbServices.Items.Refresh();
+            }
+            else if (itemType == (int)ItemTypes.ProductUnit)
+            {
+                lbProductUnits.ItemsSource = this._repo.GetProductUnits();
+                lbProductUnits.Items.Refresh();
+            }
+            else if (itemType == (int)ItemTypes.Currency)
+            {
+                lbCurrencies.ItemsSource = this._repo.GetCurrencies();
+                lbCurrencies.Items.Refresh();
+            }
+            else if (itemType == (int)ItemTypes.Utility)
+            {
+                lbUtilities.ItemsSource = this._repo.GetUtilities();
+                lbUtilities.Items.Refresh();
+            }
+        }
+
+        private void btnRemoveProduct_Click(object sender, RoutedEventArgs e)
+        {
+            var result = this._repo.DeleteProduct((this.seletedItem as Product).ProductId);
+            this.RefreshItems((int)ItemTypes.Product);
+        }
+
+        private void btnRemoveService_Click(object sender, RoutedEventArgs e)
+        {
+            var result = this._repo.DeleteService((this.seletedItem as Service).ServiceId);
+            this.RefreshItems((int)ItemTypes.Service);
+        }
+
+        private void btnRemoveProductUnit_Click(object sender, RoutedEventArgs e)
+        {
+            var result = this._repo.DeleteProductUnit((this.seletedItem as ProductUnit).ProductUnitId);
+            this.RefreshItems((int)ItemTypes.ProductUnit);
+        }
+
+        private void btnRemoveCurrency_Click(object sender, RoutedEventArgs e)
+        {
+            var result = this._repo.DeleteCurrency((this.seletedItem as Currency).CurrencyId);
+            this.RefreshItems((int)ItemTypes.Currency);
+        }
+
+        private void btnRemoveUtility_Click(object sender, RoutedEventArgs e)
+        {
+            var result = this._repo.DeleteUtility((this.seletedItem as Utility).UtilityId);
+            this.RefreshItems((int)ItemTypes.Utility);
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.seletedItem = ((ListBox)sender).SelectedItem;
         }
 
         private void btnAddBankAccount(object sender, RoutedEventArgs e)

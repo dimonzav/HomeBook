@@ -45,9 +45,32 @@
             return null;
         }
 
+        public bool AddProductUnit(string name)
+        {
+            this.context.ProductUnits.Add(new ProductUnit { Name = name });
+
+            return this.context.SaveChanges() > 0;
+        }
+
         public List<ProductUnit> GetProductUnits()
         {
             return this.context.ProductUnits.ToList();
+        }
+
+        public bool DeleteProductUnit(int productUnitId)
+        {
+            var deletedProductUnit = this.context.ProductUnits.FirstOrDefault(pu => pu.ProductUnitId == productUnitId);
+
+            this.context.ProductUnits.Remove(deletedProductUnit);
+
+            return this.context.SaveChanges() > 0;
+        }
+
+        public bool AddCurrency(string name)
+        {
+            this.context.Currencies.Add(new Currency { Name = name });
+
+            return this.context.SaveChanges() > 0;
         }
 
         public List<Currency> GetCurrencies()
@@ -55,9 +78,34 @@
             return this.context.Currencies.ToList();
         }
 
+        public bool DeleteCurrency(int currencyId)
+        {
+            var deletedCurrency = this.context.Currencies.FirstOrDefault(c => c.CurrencyId == currencyId);
+
+            this.context.Currencies.Remove(deletedCurrency);
+
+            return this.context.SaveChanges() > 0;
+        }
+
+        public bool AddUtility(string name)
+        {
+            this.context.Utilities.Add(new Utility { Name = name });
+
+            return this.context.SaveChanges() > 0;
+        }
+
         public List<Utility> GetUtilities()
         {
             return this.context.Utilities.ToList();
+        }
+
+        public bool DeleteUtility(int utilityId)
+        {
+            var deletedUtility = this.context.Utilities.FirstOrDefault(u => u.UtilityId == utilityId);
+
+            this.context.Utilities.Remove(deletedUtility);
+
+            return this.context.SaveChanges() > 0;
         }
 
         public List<SalaryOperationType> GetSalaryOperationTypes()
@@ -68,11 +116,6 @@
         public List<BankOperationType> GetBankOperationTypes()
         {
             return this.context.BankOperationTypes.ToList();
-        }
-
-        public List<BankAccount> GetBankAccounts()
-        {
-            return this.context.BankAccounts.ToList();
         }
 
         public List<OperationModel> GetOperations(int operationTypeId)
@@ -197,6 +240,20 @@
             return this.context.SaveChanges() > 0;
         }
 
+        public List<Product> GetProducts()
+        {
+            return this.context.Products.ToList();
+        }
+
+        public bool DeleteProduct(int producId)
+        {
+            var deletedProduct = this.context.Products.FirstOrDefault(p => p.ProductId == producId);
+
+            this.context.Products.Remove(deletedProduct);
+
+            return this.context.SaveChanges() > 0;
+        }
+
         public bool AddService(string name)
         {
             var service = new Service { Name = name };
@@ -206,14 +263,18 @@
             return this.context.SaveChanges() > 0;
         }
 
-        public List<Product> GetProducts()
-        {
-            return this.context.Products.ToList();
-        }
-
         public List<Service> GetServices()
         {
             return this.context.Services.ToList();
+        }
+
+        public bool DeleteService(int serviceId)
+        {
+            var deletedService = this.context.Services.FirstOrDefault(p => p.ServiceId == serviceId);
+
+            this.context.Services.Remove(deletedService);
+
+            return this.context.SaveChanges() > 0;
         }
 
         public List<OperationModel> GetReportForOperations(ReportModel reportModel)

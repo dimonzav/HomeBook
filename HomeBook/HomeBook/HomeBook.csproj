@@ -43,6 +43,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.5.0.37524, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.5.0.8\lib\net40\FontAwesome.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -74,6 +78,7 @@
       <DependentUpon>AddService.xaml</DependentUpon>
     </Compile>
     <Compile Include="BoolTurnConverter.cs" />
+    <Compile Include="DataAccess\ItemTypes.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Models\BankAccountType.cs" />
     <Compile Include="Models\BankAccount.cs" />
@@ -87,8 +92,8 @@
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Utility.cs" />
     <Compile Include="MultiBooleanVisibilityConverter.cs" />
-    <Compile Include="NewProduct.xaml.cs">
-      <DependentUpon>NewProduct.xaml</DependentUpon>
+    <Compile Include="NewItem.xaml.cs">
+      <DependentUpon>NewItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="OperationProduct.xaml.cs">
       <DependentUpon>OperationProduct.xaml</DependentUpon>
@@ -121,27 +126,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Home.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataAccess\Repo.cs" />
-    <Compile Include="Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewProduct.xaml">
+    <Page Include="NewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

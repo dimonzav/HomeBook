@@ -5,32 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeBook"
         mc:Ignorable="d"
-        Title="Login" Height="350" Width="500" WindowStartupLocation="CenterScreen" WindowState="Normal" ResizeMode="NoResize">
+        Title="Home" Height="350" Width="550" WindowStartupLocation="CenterScreen" WindowState="Normal" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0.004"/>
-                <GradientStop Color="#FF4F90F0" Offset="1"/>
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FFFFA2A2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
 
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition />
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="forLogin" Content="Login" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontFamily="Cooper Black" FontSize="16" Height="32" Foreground="#FFE09325" Margin="90,0,0,0" />
-        <TextBox x:Name="tbLogin" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="200" Height="25" TextWrapping="Wrap" FontSize="16" FontFamily="Cooper Black" Margin="0,0,90,0" />
-        <Label x:Name="forPassword" Content="Password" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontSize="16" FontFamily="Cooper Black" Height="32" Foreground="#FFE09325" Margin="90,0,0,0" />
-        <PasswordBox x:Name="passwordBox" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="200" Height="25" FontSize="16" FontFamily="Cooper Black" Margin="0,0,90,0" />
-        <Button x:Name="btnOk" Content="Ok" Grid.Row="3" Grid.Column="0" Width="75" Height="25" FontSize="16" FontFamily="Cooper Black" Foreground="#FFE09325" Click="btnOk_Click" />
-        <Button x:Name="btnExit" Content="Exit" Grid.Row="3" Grid.Column="1" Width="75" Height="25" Foreground="#FFE09325" FontFamily="Cooper Black" FontSize="16" Click="btnExit_Click" />
+        <Menu x:Name="menu" Height="23" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Add operation"></MenuItem>
+                <MenuItem Header="_Add product"></MenuItem>
+                <MenuItem Header="_Export to Excel"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Button x:Name="btnOperations" Content="Operations" Grid.Row="1" Grid.Column="0" Width="140"  Height="100" FontFamily="Cooper Black" FontSize="24" BorderBrush="#FF818181" Foreground="Black" Click="btnOperations_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
+            </Button.Effect>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.438"/>
+                    <GradientStop Color="#FFD9DADE" Offset="0.631"/>
+                    <GradientStop Color="#FF5B7BE6" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnReport" Content="Reports" Grid.Row="1" Grid.Column="1" Width="140" Height="100" BorderBrush="#FF785A5A" Foreground="Black" FontSize="24" FontFamily="Cooper Black" Click="btnReport_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
+            </Button.Effect>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.426"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.217"/>
+                    <GradientStop Color="#FFB65959" Offset="0.876"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnProduct" Content="Settings" Grid.Row="1" Grid.Column="2" Width="140" Height="100" FontFamily="Cooper Black" FontSize="24" OpacityMask="Black" Click="btnProduct_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
+            </Button.Effect>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FF42C165" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

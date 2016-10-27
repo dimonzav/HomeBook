@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HomeBook.DataAccess;
 using HomeBook.ViewModels;
+using System.Windows.Media.Animation;
+
 
 namespace HomeBook
 {
@@ -146,7 +148,7 @@ namespace HomeBook
 
         private void btnBackToHome_Click(object sender, RoutedEventArgs e)
         {
-            Home home = new Home();
+            MainWindow home = new MainWindow();
             home.Show();
             this.Close();
         }

@@ -10,13 +10,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HomeBook
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -25,15 +24,24 @@ namespace HomeBook
             InitializeComponent();
         }
 
-        private void btnOk_Click(object sender, RoutedEventArgs e)
+        private void btnOperations_Click(object sender, RoutedEventArgs e)
         {
-            Home home = new Home();
-            home.Show();
+            Operations operations = new Operations();
+            operations.Show();
             this.Close();
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void btnReport_Click(object sender, RoutedEventArgs e)
         {
+            Reports reports = new Reports();
+            reports.Show();
+            this.Close();
+        }
+
+        private void btnProduct_Click(object sender, RoutedEventArgs e)
+        {
+            Settings units = new Settings();
+            units.Show();
             this.Close();
         }
     }

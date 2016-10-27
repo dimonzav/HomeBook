@@ -30,16 +30,16 @@
                     </Grid.ColumnDefinitions>
 
                     <Label x:Name="forProduct" Content="Products" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" />
-                    <Button x:Name="btnAddProduct" Content="Add" Grid.Row="1" Grid.Column="0" Width="50" Height="25" Margin="50,0,0,0" />
-                    <Button x:Name="btnRemoveProduct" Content="Remove" Grid.Row="1" Grid.Column="1" Width="50" Height="25" Margin="0,0,50,0" />
-                    <ListBox x:Name="lbProducts" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="250" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" />
+                    <Button x:Name="btnAddProduct" Content="Add" Grid.Row="1" Grid.Column="0" Width="50" Height="25" Margin="50,0,0,0" Click="addNewItem" Tag="1" />
+                    <Button x:Name="btnRemoveProduct" Content="Remove" Grid.Row="1" Grid.Column="1" Width="50" Height="25" Margin="0,0,50,0" Click="btnRemoveProduct_Click" />
+                    <ListBox x:Name="lbProducts" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="250" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" SelectionChanged="listBox_SelectionChanged" />
                     <Label x:Name="forServices" Content="Services" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" />
-                    <Button x:Name="btnAddService" Content="Add" Grid.Row="1" Grid.Column="2" Width="50" Height="25" Margin="50,0,0,0" />
-                    <Button x:Name="btnRemoveService" Content="Remove" Grid.Row="1" Grid.Column="3" Width="50" Height="25" Margin="0,0,50,0" />
-                    <ListBox x:Name="lbServices" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="250" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" />
+                    <Button x:Name="btnAddService" Content="Add" Grid.Row="1" Grid.Column="2" Width="50" Height="25" Margin="50,0,0,0" Click="addNewItem" Tag="2" />
+                    <Button x:Name="btnRemoveService" Content="Remove" Grid.Row="1" Grid.Column="3" Width="50" Height="25" Margin="0,0,50,0" Click="btnRemoveService_Click" />
+                    <ListBox x:Name="lbServices" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="250" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" SelectionChanged="listBox_SelectionChanged" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Units" Width="300">
+            <TabItem Header="Items" Width="300">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -56,34 +56,34 @@
                     </Grid.ColumnDefinitions>
 
                     <Label x:Name="forProductUnits" Content="Product units" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" />
-                    <Button x:Name="btnAddProductUnit" Content="Add" Grid.Row="1" Grid.Column="0" Width="50" Height="25" />
-                    <Button x:Name="btnRemoveProductUnit" Content="Remove" Grid.Row="1" Grid.Column="1" Width="50" Height="25" />
-                    <ListBox x:Name="lbProductUnits" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="200" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" />
+                    <Button x:Name="btnAddProductUnit" Content="Add" Grid.Row="1" Grid.Column="0" Width="50" Height="25" Click="addNewItem" Tag="3" />
+                    <Button x:Name="btnRemoveProductUnit" Content="Remove" Grid.Row="1" Grid.Column="1" Width="50" Height="25" Click="btnRemoveProductUnit_Click" />
+                    <ListBox x:Name="lbProductUnits" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="200" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" SelectionChanged="listBox_SelectionChanged" />
                     <Label x:Name="forCurrencies" Content="Currencies" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" />
-                    <Button x:Name="btnAddCurrency" Content="Add" Grid.Row="1" Grid.Column="2" Width="50" Height="25" />
-                    <Button x:Name="btnRemoveCurrency" Content="Remove" Grid.Row="1" Grid.Column="3" Width="50" Height="25" />
-                    <ListBox x:Name="lbCurrencies" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="200" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" />
+                    <Button x:Name="btnAddCurrency" Content="Add" Grid.Row="1" Grid.Column="2" Width="50" Height="25" Tag="4" Click="addNewItem" />
+                    <Button x:Name="btnRemoveCurrency" Content="Remove" Grid.Row="1" Grid.Column="3" Width="50" Height="25" Click="btnRemoveCurrency_Click" />
+                    <ListBox x:Name="lbCurrencies" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="200" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" SelectionChanged="listBox_SelectionChanged" />
                     <Label x:Name="forUtilities" Content="Utilities" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" />
-                    <Button x:Name="btnAddUtility" Content="Add" Grid.Row="1" Grid.Column="4" Width="50" Height="25" />
-                    <Button x:Name="btnRemoveUtility" Content="Remove" Grid.Row="1" Grid.Column="5" Width="50" Height="25" />
-                    <ListBox x:Name="lbUtilities" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Width="200" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" />
+                    <Button x:Name="btnAddUtility" Content="Add" Grid.Row="1" Grid.Column="4" Width="50" Height="25" Tag="5" Click="addNewItem" />
+                    <Button x:Name="btnRemoveUtility" Content="Remove" Grid.Row="1" Grid.Column="5" Width="50" Height="25" Click="btnRemoveUtility_Click" />
+                    <ListBox x:Name="lbUtilities" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Width="200" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" SelectionChanged="listBox_SelectionChanged" />
                 </Grid>
             </TabItem>
             <TabItem Header="Bank accounts" Width="300">
-                <ScrollViewer>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="3*" />
-                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="3*" />
-                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="3*" />
-                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="3*" />
-                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="3*" />
-                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>

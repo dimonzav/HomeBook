@@ -55,8 +55,8 @@ namespace HomeBook
             cbConvertedCurrency.DisplayMemberPath = "Name";
             cbBankOperationType.ItemsSource = this._repo.GetBankOperationTypes();
             cbBankOperationType.DisplayMemberPath = "Name";
-            cbBank.ItemsSource = this._repo.GetBankAccounts();
-            cbBank.DisplayMemberPath = "Name";
+            //cbBank.ItemsSource = this._repo.GetBankAccounts();
+            //cbBank.DisplayMemberPath = "Name";
             cbUtilities.ItemsSource = this._repo.GetUtilities();
             cbUtilities.DisplayMemberPath = "Name";
         }

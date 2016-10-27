@@ -23,7 +23,7 @@ namespace HomeBook
     {
         private Repo _repo;
         private ReportModel reportModel;
-        private int selectedTabIndex;
+
         public Reports()
         {
             InitializeComponent();
@@ -73,7 +73,7 @@ namespace HomeBook
 
         private void btnBackToHome_Click(object sender, RoutedEventArgs e)
         {
-            Home home = new Home();
+            MainWindow home = new MainWindow();
             home.Show();
             this.Close();
         }

@@ -43,12 +43,12 @@ namespace HomeBook
         
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            NewProduct newProductWindow = new NewProduct();
-            newProductWindow.RefreshProductsEvent += new NewProduct.RefreshDel(this.RefreshProducts);
+            NewItem newProductWindow = new NewItem(ItemTypes.Product);
+            newProductWindow.RefreshEvent += new NewItem.RefreshDel(this.RefreshProducts);
             newProductWindow.ShowDialog();
         }
 
-        private void RefreshProducts()
+        private void RefreshProducts(int itemType)
         {
             cbProducts.ItemsSource = this._repo.GetProducts();
             cbProducts.Items.Refresh();

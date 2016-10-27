@@ -12,13 +12,14 @@
         private string _bankName;
         private string _accountNumber;
         private string _cardExpired;
-        private double _cardBalance;
-        private double _creditCardLimit;
-        private int _term;
-        private double _accountAmount;
-        private double _percentage;
-        private double _depositPercentageSum;
-        private double _creditDebt;
+        private double? _cardBalance;
+        private double? _creditCardLimit;
+        private bool _allFieldsFilled;
+        private int? _term;
+        private double? _accountAmount;
+        private double? _percentage;
+        private double? _depositPercentageSum;
+        private double? _creditDebt;
 
         public BankAccountModel()
         {
@@ -53,7 +54,7 @@
             {
                 if (value == _bankAccountTypeId) return;
                 _bankAccountTypeId = value;
-                ChangeAccount();
+                this.ChangeAccount();
                 NotifyPropertyChanged();
                 NotifyPropertyChanged(nameof(this.IsCard));
                 NotifyPropertyChanged(nameof(this.IsCreditCard));
@@ -75,6 +76,17 @@
 
         public bool IsDeposit { get; set; }
 
+        public bool AllFieldsFilled
+        {
+            get { return _allFieldsFilled; }
+            set
+            {
+                if (value == _allFieldsFilled) return;
+                _allFieldsFilled = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         [Required]
         public string BankName
         {
@@ -83,6 +95,7 @@
             {
                 if (value == _bankName) return;
                 _bankName = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
@@ -95,6 +108,7 @@
             {
                 if (value == _accountNumber) return;
                 _accountNumber = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
@@ -106,83 +120,91 @@
             {
                 if (value == _cardExpired) return;
                 _cardExpired = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
 
-        public double CardBalance
+        public double? CardBalance
         {
             get { return _cardBalance; }
             set
             {
                 if (value == _cardBalance) return;
                 _cardBalance = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
 
-        public double CreditCardLimit
+        public double? CreditCardLimit
         {
             get { return _creditCardLimit; }
             set
             {
                 if (value == _creditCardLimit) return;
                 _creditCardLimit = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
 
-        public int Term
+        public int? Term
         {
             get { return _term; }
             set
             {
                 if (value == _term) return;
                 _term = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
 
-        public double AccountAmount
+        public double? AccountAmount
         {
             get { return _accountAmount; }
             set
             {
                 if (value == _accountAmount) return;
                 _accountAmount = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
 
-        public double Percentage
+        public double? Percentage
         {
             get { return _percentage; }
             set
             {
                 if (value == _percentage) return;
                 _percentage = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
 
-        public double DepositPercentageSum
+        public double? DepositPercentageSum
         {
             get { return _depositPercentageSum; }
             set
             {
                 if (value == _depositPercentageSum) return;
                 _depositPercentageSum = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
 
-        public double CreditDebt
+        public double? CreditDebt
         {
             get { return _creditDebt; }
             set
             {
                 if (value == _creditDebt) return;
                 _creditDebt = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
@@ -222,6 +244,26 @@
             if(this.BankAccountTypeId == 5)
             {
                 this.IsDeposit = true;
+            }
+        }
+
+        private void CheckForAllFieldsFilled()
+        {
+            if (this.IsCard && this.IsCreditCard)
+            {
+                this.AllFieldsFilled = this.BankName.IsCleanText() && this.AccountNumber.IsCleanText() && this.CardExpired.IsCleanText() && this.CardBalance.IsCleanNumber() && this.CreditCardLimit.IsCleanNumber();
+            }
+            else if (this.IsCard)
+            {
+                this.AllFieldsFilled = this.BankName.IsCleanText() && this.AccountNumber.IsCleanText() && this.CardExpired.IsCleanText() && this.CardBalance.IsCleanNumber();
+            }
+            else if (this.IsCreditDeposit && this.IsDeposit)
+            {
+                this.AllFieldsFilled = this.BankName.IsCleanText() && this.AccountNumber.IsCleanText() && this.Percentage.IsCleanNumber() && this.Term.IsCleanNumber() && this.AccountAmount.IsCleanNumber() && this.DepositPercentageSum.IsCleanNumber();
+            }
+            else if (this.IsCreditDeposit && this.IsCredit)
+            {
+                this.AllFieldsFilled = this.BankName.IsCleanText() && this.AccountNumber.IsCleanText() && this.Percentage.IsCleanNumber() && this.Term.IsCleanNumber() && this.AccountAmount.IsCleanNumber() && this.CreditDebt.IsCleanNumber();
             }
         }
     }

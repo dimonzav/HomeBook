@@ -7,15 +7,16 @@
         mc:Ignorable="d"
         Title="Units" Height="500" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="#FFFFA2A2" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
         <TabControl Grid.Column="0" Grid.Row="0">
-            <TabItem Header="Products/Services" Width="300">
+            <TabItem Header="Products/Services" Width="272">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -39,7 +40,7 @@
                     <ListBox x:Name="lbServices" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="250" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" SelectionChanged="listBox_SelectionChanged" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Items" Width="300">
+            <TabItem Header="Items" Width="272">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -69,7 +70,7 @@
                     <ListBox x:Name="lbUtilities" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Width="200" Height="250" VerticalAlignment="Top" Margin="0,20,0,0" SelectionChanged="listBox_SelectionChanged" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Bank accounts" Width="300">
+            <TabItem Header="Bank accounts" Width="272">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -158,5 +159,7 @@
                 </ScrollViewer>
             </TabItem>
         </TabControl>
+
+        <Button x:Name="btnBackToHome" Content="Back to Home" Grid.Row="2" Grid.Column="1" Height="27" VerticalAlignment="Top" FontFamily="Cooper Black" FontSize="16" Foreground="#FFE0B030" Margin="0,40,0,0" Click="btnBackToHome_Click" />
     </Grid>
 </Window>

@@ -7,5 +7,7 @@
         public static bool IsCleanText(this string str) => !String.IsNullOrEmpty(str) || !String.IsNullOrWhiteSpace(str);
 
         public static bool IsCleanNumber(this double? num) => num != null;
+
+        public static bool IsCleanNumber(this int? num) => num != null;
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeBook.ViewModels"
         mc:Ignorable="d"
-        Title="Add Operation" Height="500" Width="650">
+        Title="Add Operation" Height="500" Width="650" WindowStartupLocation="CenterScreen" WindowState="Normal" ResizeMode="NoResize">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:OperationModel x:Key="OperationModel" />
@@ -46,7 +46,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="160" />
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="120" />
-                <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="60" />
+                <DataGridTextColumn Header="Unit" Binding="{Binding ProductUnit.Name}" Width="60" />
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="100" />
                 <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" Width="98" />
             </DataGrid.Columns>

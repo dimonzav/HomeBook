@@ -53,7 +53,7 @@
             this.BankOperationTypeId = operation.BankOperationTypeId;
             this.BankOperationType = operation.BankOperationType;
             this.BankAccountId = operation.BankAccountId;
-            this.BankAccountModel = new BankAccountModel(operation.BankAccount);
+            this.BankAccountModel = operation.BankAccount != null ? new BankAccountModel(operation.BankAccount) : null;
             this.UtilityId = operation.UtilityId;
             this.Utility = operation.Utility;
             this.OperationProducts = new List<OperationProductModel>();
@@ -358,7 +358,7 @@
             }
             else if (this.IsServiceOperations)
             {
-                this.AllFieldsFilled = this.Name.IsCleanText() && this.OperationServices.Count > 0;
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.OperationServices != null;
             }
             else if (this.IsSalary && !this.IsConvert)
             {

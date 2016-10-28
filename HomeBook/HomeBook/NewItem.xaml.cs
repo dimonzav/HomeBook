@@ -42,37 +42,40 @@ namespace HomeBook
 
         private void btnSaveProduct_Click(object sender, RoutedEventArgs e)
         {
-            bool result = false;
+            if (this.tbItemName.Text.Length > 0)
+            {
+                bool result = false;
 
-            if (this._itemType == ItemTypes.Product)
-            {
-                result = this._repo.AddProduct(this.tbItemName.Text);
-            } 
-            else if (this._itemType == ItemTypes.Service)
-            {
-                result = this._repo.AddService(this.tbItemName.Text);
-            }
-            else if (this._itemType == ItemTypes.ProductUnit)
-            {
-                result = this._repo.AddProductUnit(this.tbItemName.Text);
-            }
-            else if (this._itemType == ItemTypes.Currency)
-            {
-                result = this._repo.AddCurrency(this.tbItemName.Text);
-            }
-            else if (this._itemType == ItemTypes.Utility)
-            {
-                result = this._repo.AddUtility(this.tbItemName.Text);
-            }
+                if (this._itemType == ItemTypes.Product)
+                {
+                    result = this._repo.AddProduct(this.tbItemName.Text);
+                }
+                else if (this._itemType == ItemTypes.Service)
+                {
+                    result = this._repo.AddService(this.tbItemName.Text);
+                }
+                else if (this._itemType == ItemTypes.ProductUnit)
+                {
+                    result = this._repo.AddProductUnit(this.tbItemName.Text);
+                }
+                else if (this._itemType == ItemTypes.Currency)
+                {
+                    result = this._repo.AddCurrency(this.tbItemName.Text);
+                }
+                else if (this._itemType == ItemTypes.Utility)
+                {
+                    result = this._repo.AddUtility(this.tbItemName.Text);
+                }
 
-            if (result)
-            {
-                this.RefreshEvent((int)this._itemType);
-                this.Close();
-            }
-            else
-            {
-                var resultMessageBox = MessageBox.Show("New product are not added! Retry", "Attention!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (result)
+                {
+                    this.RefreshEvent((int)this._itemType);
+                    this.Close();
+                }
+                else
+                {
+                    var resultMessageBox = MessageBox.Show("New product are not added! Retry", "Attention!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 

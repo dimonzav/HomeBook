@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HomeBook.ViewModels"
         xmlns:localC="clr-namespace:HomeBook"
         mc:Ignorable="d"
-        Title="AddBankAccounts" Height="500" Width="650">
+        Title="AddBankAccounts" Height="500" Width="650" WindowStartupLocation="CenterScreen" WindowState="Normal" ResizeMode="NoResize">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:BankAccountModel x:Key="BankAccount" />

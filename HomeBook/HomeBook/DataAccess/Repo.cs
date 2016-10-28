@@ -159,7 +159,7 @@
                     ConvertedCurrencyId = operationModel.ConvertedCurrencyId + 1,
                     ConvertedValue = operationModel.ConvertedValue,
                     BankOperationTypeId = operationModel.BankOperationTypeId + 1,
-                    BankAccountId = operationModel.BankAccountModel != null ? operationModel.BankAccountModel.BankAccountId : "0",
+                    BankAccountId = operationModel.BankAccountModel != null ? operationModel.BankAccountModel.BankAccountId : null,
                     UtilityId = operationModel.UtilityId + 1
                 };
 
@@ -192,11 +192,11 @@
                 if (operation.OperationTypeId == 3 || operation.OperationTypeId == 4)
                 {
                     adjustAccountResult = this.adjustBankAccount(operation);
-                }
 
-                if (!adjustAccountResult)
-                {
-                    return new RequestResult { Result = false, Message = "Exceeded the amount" };
+                    if (!adjustAccountResult)
+                    {
+                        return new RequestResult { Result = false, Message = "Exceeded the amount" };
+                    }
                 }
 
                 try
@@ -422,6 +422,7 @@
                     AccountNumber = bankAccountModel.AccountNumber,
                     CardExpired = bankAccountModel.CardExpired,
                     CardBalance = bankAccountModel.CardBalance,
+                    CreditCardLimit = bankAccountModel.CreditCardLimit,
                     Percentage = bankAccountModel.Percentage,
                     Term = bankAccountModel.Term,
                     AccountAmount = bankAccountModel.Term,

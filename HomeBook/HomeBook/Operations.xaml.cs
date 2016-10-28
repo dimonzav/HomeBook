@@ -115,31 +115,26 @@ namespace HomeBook
 
                 if (selectedOperation.OperationTypeId == 1)
                 {
-                    dgProducts.SelectedItem = operations[0];
                     dgProducts.ItemsSource = operations;
                     dgProducts.Items.Refresh();
                 }
                 else if (selectedOperation.OperationTypeId == 2)
                 {
-                    dgServices.SelectedItem = operations[0];
                     dgServices.ItemsSource = operations;
                     dgServices.Items.Refresh();
                 }
                 else if (selectedOperation.OperationTypeId == 3)
                 {
-                    dgSalary.SelectedItem = operations[0];
                     dgSalary.ItemsSource = operations;
                     dgSalary.Items.Refresh();
                 }
                 else if (selectedOperation.OperationTypeId == 4)
                 {
-                    dgBank.SelectedItem = operations[0];
                     dgBank.ItemsSource = operations;
                     dgBank.Items.Refresh();
                 }
                 else if (selectedOperation.OperationTypeId == 5)
                 {
-                    dgUtilities.SelectedItem = operations[0];
                     dgUtilities.ItemsSource = operations;
                     dgUtilities.Items.Refresh();
                 }

@@ -72,7 +72,7 @@
                 <DataGrid x:Name="dgSalary" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgSalary_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Type" Binding="{Binding SalaryOperationType.Name}" Width="100"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Type" Binding="{Binding BankAccountModel.BankName}" Width="130"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Bank account" Binding="{Binding BankAccountModel.BankName}" Width="130"></DataGridTextColumn>
                         <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="145"></DataGridTextColumn>
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="140"></DataGridTextColumn>
                         <DataGridTextColumn Header="CY" Binding="{Binding Currency.Name}" Width="60"></DataGridTextColumn>
@@ -87,7 +87,7 @@
                 <DataGrid x:Name="dgBank" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgBank_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Type" Binding="{Binding BankOperationType.Name}" Width="150"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Type" Binding="{Binding BankAccountModel.BankName}" Width="130"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Bank account" Binding="{Binding BankAccountModel.BankName}" Width="130"></DataGridTextColumn>
                         <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="170"></DataGridTextColumn>
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="250"></DataGridTextColumn>
                         <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" Width="230"></DataGridTextColumn>

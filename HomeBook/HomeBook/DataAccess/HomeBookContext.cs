@@ -40,5 +40,12 @@
         public virtual DbSet<BankAccountType> BankAccountTypes { get; set; }
 
         public virtual DbSet<SalaryOperationType> SalaryOperationTypes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Operation>().HasOptional(b => b.BankAccount);
+        }
     }
 }

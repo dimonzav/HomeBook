@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeBook.ViewModels"
         mc:Ignorable="d"
-        Title="OperationProduct" Height="400" Width="500">
+        Title="OperationProduct" Height="400" Width="500" WindowStartupLocation="CenterScreen" WindowState="Normal" ResizeMode="NoResize">
     <Window.Resources>
         <local:OperationProductModel x:Key="OperationProductModel" />
     </Window.Resources>

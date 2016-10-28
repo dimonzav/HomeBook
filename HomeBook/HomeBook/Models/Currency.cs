@@ -7,7 +7,7 @@
     {
         [Key]
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CurrencyId { get; set; }
 
         [Required]

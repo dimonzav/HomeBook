@@ -55,7 +55,7 @@
 
         public virtual BankOperationType BankOperationType { get; set; }
 
-        public int BankAccountId { get; set; }
+        public string BankAccountId { get; set; }
 
         public virtual BankAccount BankAccount { get; set; }
 

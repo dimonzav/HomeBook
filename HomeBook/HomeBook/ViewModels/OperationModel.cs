@@ -22,12 +22,14 @@
         private double? _convertedValue;
         private int _utilityTypeId;
         private int _bankOperationTypeId;
-        private int _bankTypeId;
+        private string _bankAccountId;
         private bool _isProductOperations = true;
         private bool _isSalary;
         private bool _isServiceOperations;
         private bool _isUtilities;
         private bool _isBank;
+        private bool _allFieldsFilled;
+        private bool _isConvert;
 
         public OperationModel()
         {
@@ -84,6 +86,7 @@
             {
                 if (value == _name) return;
                 _name = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
@@ -98,6 +101,7 @@
                 _operationTypeId = value;
                 ChangeOperationType();
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(this.IsBankAccount));
             }
         }
 
@@ -127,14 +131,29 @@
                 if (value == _salaryOperationTypeId) return;
                 _salaryOperationTypeId = value;
                 this.ClearConvertedSalary();
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
-                NotifyPropertyChanged(nameof(IsConvert));
+                NotifyPropertyChanged(nameof(IsSalaryWidthdrawal));
             }
         }
 
         public virtual SalaryOperationType SalaryOperationType { get; set; }
 
-        public bool IsConvert => SalaryOperationTypeId == 1;
+        public bool IsSalaryWidthdrawal => this.SalaryOperationTypeId == 1;
+
+        public bool IsBankAccount => this.OperationTypeId == 2 || this.OperationTypeId == 3;
+
+        public bool IsConvert
+        {
+            get { return _isConvert; }
+            set
+            {
+                if (value == _isConvert) return;
+                _isConvert = value;
+                this.AllFieldsFilled = false;
+                NotifyPropertyChanged();
+            }
+        }
 
         public int CurrencyId
         {
@@ -143,6 +162,7 @@
             {
                 if (value == _currencyId) return;
                 _currencyId = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
@@ -156,6 +176,7 @@
             {
                 if (value == _convertedCurrencyId) return;
                 _convertedCurrencyId = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
@@ -167,6 +188,7 @@
             {
                 if (value == _convertedValue) return;
                 _convertedValue = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
                 NotifyPropertyChanged(nameof(this.ConvertedSalary));
             }
@@ -200,13 +222,14 @@
 
         public virtual BankOperationType BankOperationType { get; set; }
 
-        public int BankAccountId
+        public string BankAccountId
         {
-            get { return _bankTypeId; }
+            get { return _bankAccountId; }
             set
             {
-                if (value == _bankTypeId) return;
-                _bankTypeId = value;
+                if (value == _bankAccountId) return;
+                _bankAccountId = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
@@ -221,6 +244,7 @@
             {
                 if (value == _sum) return;
                 _sum = value;
+                this.CheckForAllFieldsFilled();
                 NotifyPropertyChanged();
             }
         }
@@ -280,6 +304,17 @@
             }
         }
 
+        public bool AllFieldsFilled
+        {
+            get { return _allFieldsFilled; }
+            set
+            {
+                if (value == _allFieldsFilled) return;
+                _allFieldsFilled = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -313,13 +348,42 @@
             {
                 this.IsUtilities = true;
             }
-        } 
+        }
+
+        private void CheckForAllFieldsFilled()
+        {
+            if (this.IsProductOperations)
+            {
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.OperationProducts != null;
+            }
+            else if (this.IsServiceOperations)
+            {
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.OperationServices.Count > 0;
+            }
+            else if (this.IsSalary && !this.IsConvert)
+            {
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber();
+            }
+            else if (this.IsSalary && this.SalaryOperationTypeId == 1 && this.IsConvert)
+            {
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber() && this.ConvertedValue.IsCleanNumber() && this.ConvertedSalary.IsCleanNumber();
+            }
+            else if (this.IsBank)
+            {
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.BankAccountId.IsCleanText() && this.Sum.IsCleanNumber();
+            }
+            else if (this.IsUtilities)
+            {
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber();
+            }
+        }
 
         public void ClearConvertedSalary()
         {
-            if(this.SalaryOperationTypeId == 0)
+            if (this.SalaryOperationTypeId == 0)
             {
                 this.ConvertedValue = null;
+                this.IsConvert = false;
             }
         }
     }

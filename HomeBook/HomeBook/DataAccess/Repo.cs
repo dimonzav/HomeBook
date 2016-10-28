@@ -159,7 +159,7 @@
                     ConvertedCurrencyId = operationModel.ConvertedCurrencyId + 1,
                     ConvertedValue = operationModel.ConvertedValue,
                     BankOperationTypeId = operationModel.BankOperationTypeId + 1,
-                    BankAccountId = operationModel.BankAccountId + 1,
+                    BankAccountId = operationModel.BankAccountModel.BankAccountId,
                     UtilityId = operationModel.UtilityId + 1
                 };
 

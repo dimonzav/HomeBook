@@ -9,5 +9,7 @@
         public static bool IsCleanNumber(this double? num) => num != null;
 
         public static bool IsCleanNumber(this int? num) => num != null;
+
+        public static bool IsCleanNumber(this int num) => num > 0;
     }
 }

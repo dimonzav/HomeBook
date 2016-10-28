@@ -49,6 +49,8 @@ namespace HomeBook
             cbOperationType.DisplayMemberPath = "Name";
             cbSalaryType.ItemsSource = this._repo.GetSalaryOperationTypes();
             cbSalaryType.DisplayMemberPath = "Name";
+            cbBankAccount.ItemsSource = this._repo.GetBankAccounts(1);
+            cbBankAccount.DisplayMemberPath = "BankName";
             cbSalaryCurrency.ItemsSource = this._repo.GetCurrencies();
             cbSalaryCurrency.DisplayMemberPath = "Name";
             cbConvertedCurrency.ItemsSource = this._repo.GetCurrencies();

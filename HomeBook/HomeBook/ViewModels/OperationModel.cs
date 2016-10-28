@@ -362,19 +362,19 @@
             }
             else if (this.IsSalary && !this.IsConvert)
             {
-                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber();
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber() && this.BankAccountModel != null && this.Currency != null;
             }
             else if (this.IsSalary && this.SalaryOperationTypeId == 1 && this.IsConvert)
             {
-                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber() && this.ConvertedValue.IsCleanNumber() && this.ConvertedSalary.IsCleanNumber();
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber() && this.BankAccountModel != null && this.ConvertedValue.IsCleanNumber() && this.ConvertedSalary.IsCleanNumber();
             }
             else if (this.IsBank)
             {
-                this.AllFieldsFilled = this.Name.IsCleanText() && this.BankAccountId.IsCleanText() && this.Sum.IsCleanNumber();
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.BankAccountModel != null && this.Sum.IsCleanNumber() && this.BankAccountModel != null;
             }
             else if (this.IsUtilities)
             {
-                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber();
+                this.AllFieldsFilled = this.Name.IsCleanText() && this.Sum.IsCleanNumber() && this.Utility != null;
             }
         }
 

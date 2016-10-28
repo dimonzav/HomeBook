@@ -10,7 +10,7 @@
     {
         private string name;
         private double? amount;
-        private string unit;
+        private int _unitId;
         private double? price;
         private double? sum;
 
@@ -23,7 +23,8 @@
             this.Name = item.Name;
             this.Amount = item.Amount;
             this.Price = item.Price;
-            this.Unit = item.Unit;
+            this.UnitId = item.UnitId;
+            this.ProductUnit = item.ProductUnit;
             this.Sum = item.Sum;
         }        
 
@@ -37,6 +38,7 @@
             {
                 name = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(this.AllFieldsFilled));
             }
         }
 
@@ -49,19 +51,23 @@
                 amount = value;
                 CalcSum();
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(this.AllFieldsFilled));
             }
         }
 
         [Required]
-        public string Unit
+        public int UnitId
         {
-            get { return unit; }
+            get { return _unitId; }
             set
             {
-                unit = value;
+                _unitId = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(this.AllFieldsFilled));
             }
         }
+
+        public virtual ProductUnit ProductUnit { get; set; }
 
         [Required]
         public double? Price
@@ -72,6 +78,7 @@
                 price = value;
                 CalcSum();
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(this.AllFieldsFilled));
             }
         }
 
@@ -86,7 +93,7 @@
             }
         }
 
-        public bool AllFieldsFilled => Name.IsCleanText() && Amount.IsCleanNumber() && Price.IsCleanNumber() && Unit.IsCleanText();
+        public bool AllFieldsFilled => Name.IsCleanText() && Amount.IsCleanNumber() && Price.IsCleanNumber() && ProductUnit != null;
 
         private void CalcSum()
         {
@@ -113,7 +120,7 @@
                     OperationProductId = model.OperationProductId,
                     Amount = model.Amount,
                     Price = model.Price,
-                    Unit = model.Unit,
+                    UnitId = model.UnitId,
                     Sum = model.Sum
                 };
             }

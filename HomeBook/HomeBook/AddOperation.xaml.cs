@@ -57,8 +57,6 @@ namespace HomeBook
             cbConvertedCurrency.DisplayMemberPath = "Name";
             cbBankOperationType.ItemsSource = this._repo.GetBankOperationTypes();
             cbBankOperationType.DisplayMemberPath = "Name";
-            //cbBank.ItemsSource = this._repo.GetBankAccounts();
-            //cbBank.DisplayMemberPath = "Name";
             cbUtilities.ItemsSource = this._repo.GetUtilities();
             cbUtilities.DisplayMemberPath = "Name";
         }
@@ -117,15 +115,49 @@ namespace HomeBook
             return total;
         }
 
-        private void btnCancelAddOperation_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnAddOpration_Click(object sender, RoutedEventArgs e)
         {
             this._repo.AddOperation(this.operation);
             this.RefreshOperationsEvent(this.operation.OperationTypeId);
+            this.Close();
+        }
+
+        private void cbBankOperationType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.operation.OperationTypeId == 3)
+            {
+                var selectedBankOperation = this.operation.BankOperationTypeId;
+                var bankAccountTypeId = 0;
+
+                if (selectedBankOperation == 0 || selectedBankOperation == 1)
+                {
+                    bankAccountTypeId = 2;
+                }
+                else if (selectedBankOperation == 2 || selectedBankOperation == 3)
+                {
+                    bankAccountTypeId = 3;
+                }
+                else if (selectedBankOperation == 4)
+                {
+                    bankAccountTypeId = 4;
+                }
+                else if (selectedBankOperation == 5)
+                {
+                    bankAccountTypeId = 5;
+                }
+
+                var result = this._repo.GetBankAccounts(bankAccountTypeId);
+
+                if (result != null)
+                {
+                    cbBankAccount.ItemsSource = result;
+                    cbBankAccount.Items.Refresh();
+                }
+            }
+        }
+
+        private void btnCancelAddOperation_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

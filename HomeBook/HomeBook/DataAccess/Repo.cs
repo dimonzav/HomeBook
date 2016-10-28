@@ -143,9 +143,9 @@
             return null;
         }
 
-        public bool AddOperation(OperationModel operationModel)
+        public RequestResult AddOperation(OperationModel operationModel)
         {
-            if(operationModel != null)
+            if (operationModel != null)
             {
                 Operation operation = new Operation
                 {
@@ -159,7 +159,7 @@
                     ConvertedCurrencyId = operationModel.ConvertedCurrencyId + 1,
                     ConvertedValue = operationModel.ConvertedValue,
                     BankOperationTypeId = operationModel.BankOperationTypeId + 1,
-                    BankAccountId = operationModel.BankAccountModel.BankAccountId,
+                    BankAccountId = operationModel.BankAccountModel != null ? operationModel.BankAccountModel.BankAccountId : "0",
                     UtilityId = operationModel.UtilityId + 1
                 };
 
@@ -188,11 +188,22 @@
                     this.context.OperationServices.AddRange(operation.OperationServices);
                 }
 
+                bool adjustAccountResult = false;
+                if (operation.OperationTypeId == 3 || operation.OperationTypeId == 4)
+                {
+                    adjustAccountResult = this.adjustBankAccount(operation);
+                }
+
+                if (!adjustAccountResult)
+                {
+                    return new RequestResult { Result = false, Message = "Exceeded the amount" };
+                }
+
                 try
                 {
                     this.context.Operations.Add(operation);
 
-                    return this.context.SaveChanges() > 0;
+                    return new RequestResult { Result = this.context.SaveChanges() > 0, Message = "Operation succesfully added" };
                 }
                 catch (DbEntityValidationException e)
                 {
@@ -219,7 +230,72 @@
                 }
             }
 
-            return false;
+            return new RequestResult { Result = false, Message = "Error. There is no operation in request" };
+        }
+
+        private bool adjustBankAccount(Operation operation)
+        {
+            var bankAccount = this.context.BankAccounts.FirstOrDefault(b => b.BankAccountId == operation.BankAccountId);
+
+            if (operation.OperationTypeId == 3)
+            {
+                if (operation.SalaryOperationTypeId == 1) {
+                    bankAccount.CardBalance += operation.Sum;
+                }
+                else if (operation.SalaryOperationTypeId == 2)
+                {
+                    if (bankAccount.CardBalance < operation.Sum)
+                    {
+                        return false;
+                    }
+                    bankAccount.CardBalance -= operation.Sum;
+                }
+            }
+            else if (operation.OperationTypeId == 4) 
+            {
+                if (operation.BankOperationTypeId == 1)
+                {
+                    bankAccount.CardBalance += operation.Sum;
+                }
+                else if (operation.BankOperationTypeId == 2)
+                {
+                    if (bankAccount.CardBalance < operation.Sum)
+                    {
+                        return false;
+                    }
+                    bankAccount.CardBalance -= operation.Sum;
+                }
+                else if (operation.BankOperationTypeId == 3)
+                {
+                    bankAccount.CardBalance += operation.Sum;
+                }
+                else if (operation.BankOperationTypeId == 4)
+                {
+                    if (bankAccount.CardBalance < operation.Sum)
+                    {
+                        return false;
+                    }
+                    bankAccount.CardBalance -= operation.Sum;
+                }
+                else if (operation.BankOperationTypeId == 5)
+                {
+                    if (bankAccount.CreditDebt < operation.Sum)
+                    {
+                        return false;
+                    }
+                    bankAccount.CreditDebt -= operation.Sum;
+                }
+                else if (operation.BankOperationTypeId == 6)
+                {
+                    if (bankAccount.DepositPercentageSum < operation.Sum)
+                    {
+                        return false;
+                    }
+                    bankAccount.DepositPercentageSum -= operation.Sum;
+                }
+            }
+
+            return this.context.SaveChanges() > 0;
         }
 
         public bool DeleteOperation(string operationId)

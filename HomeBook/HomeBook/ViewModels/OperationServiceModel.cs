@@ -38,6 +38,7 @@
                 if (value == _name) return;
                 _name = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(this.AllFieldsFilled));
             }
         }
 
@@ -50,6 +51,7 @@
                 if (value == _description) return;
                 _description = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(this.AllFieldsFilled));
             }
         }
 
@@ -64,6 +66,8 @@
                 NotifyPropertyChanged();
             }
         }
+
+        public bool AllFieldsFilled => Name.IsCleanText() && Description.IsCleanText() && Sum.IsCleanNumber();
 
         public event PropertyChangedEventHandler PropertyChanged;
 

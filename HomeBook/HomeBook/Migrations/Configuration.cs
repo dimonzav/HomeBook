@@ -19,17 +19,9 @@ namespace HomeBook.Migrations
         {
             context.OperationsTypes.AddOrUpdate(this.OperationTypes());
 
-            context.Products.AddOrUpdate(this.Products());
-
-            context.ProductUnits.AddOrUpdate(this.ProductUnits());
-
-            context.Currencies.AddOrUpdate(this.Currency());
-
             context.BankOperationTypes.AddOrUpdate(this.BankOperations());
 
             context.BankAccountTypes.AddOrUpdate(this.BankAccountTypes());
-
-            context.Utilities.AddOrUpdate(this.Utilities());
 
             context.SalaryOperationTypes.AddOrUpdate(this.SalaryTypes());
         }
@@ -48,65 +40,16 @@ namespace HomeBook.Migrations
             return types.ToArray();
         }
 
-        private Product[] Products()
-        {
-            List<Product> products = new List<Product>
-            {
-                new Product { ProductId = 1, Name = "Tomatoes" },
-                new Product { ProductId = 2, Name = "Potatoes" },
-                new Product { ProductId = 3, Name = "Bread" },
-                new Product { ProductId = 4, Name = "Butter" },
-                new Product { ProductId = 5, Name = "Meat" }
-            };
-
-            return products.ToArray();
-        }
-
-        private ProductUnit[] ProductUnits()
-        {
-            List<ProductUnit> units = new List<ProductUnit>
-            {
-                new ProductUnit { ProductUnitId = 1, Name = "kg" },
-                new ProductUnit { ProductUnitId = 2, Name = "gram" },
-                new ProductUnit { ProductUnitId = 3, Name = "piece" },
-                new ProductUnit { ProductUnitId = 4, Name = "bottle" },
-                new ProductUnit { ProductUnitId = 5, Name = "bundle" }
-            };
-
-            return units.ToArray();
-        }
-
-        private Currency[] Currency()
-        {
-            List<Currency> currency = new List<Currency>
-            {
-                new Currency { CurrencyId = 1, Name = "USD" },
-                new Currency { CurrencyId = 2, Name = "UAH" },
-                new Currency { CurrencyId = 3, Name = "EUR" }
-            };
-
-            return currency.ToArray();
-        }
-
-        private Utility[] Utilities()
-        {
-            List<Utility> utilities = new List<Utility>
-            {
-                new Utility { Name = "Water" },
-                new Utility { Name = "Gas" },
-                new Utility { Name = "Electricity" }
-            };
-
-            return utilities.ToArray();
-        }
-
         private BankOperationType[] BankOperations()
         {
             List<BankOperationType> bankOperations = new List<BankOperationType>
             {
-                new BankOperationType { BankOperationTypeId = 1, Name = "Deposit" },
-                new BankOperationType { BankOperationTypeId = 2, Name = "Credit" },
-                new BankOperationType { BankOperationTypeId = 3, Name = "Deposit %" }
+                new BankOperationType { BankOperationTypeId = 1, Name = "Credit card enroll" },
+                new BankOperationType { BankOperationTypeId = 2, Name = "Credit card widthdraw" },
+                new BankOperationType { BankOperationTypeId = 3, Name = "Debit card enroll" },
+                new BankOperationType { BankOperationTypeId = 4, Name = "Debit card widthdraw" },
+                new BankOperationType { BankOperationTypeId = 5, Name = "Credit repayment" },
+                new BankOperationType { BankOperationTypeId = 6, Name = "Deposit percentages widthdrawal" }
             };
 
             return bankOperations.ToArray();

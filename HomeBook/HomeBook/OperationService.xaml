@@ -40,7 +40,7 @@
         <Label x:Name="forServiceSum" Content="Sum" Grid.Row="2" Grid.Column="1" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="0,15,0,0" />
         <TextBox x:Name="tbServiceSum" Grid.Row="2" Grid.Column="1" FontSize="16" FontFamily="Cooper Black" TextWrapping="Wrap" Height="25" Margin="0,0,20,0" Text="{Binding Sum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Button x:Name="btnAddService" Content="Add" Grid.Row="3" Grid.Column="0" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Width="130" Height="30" Margin="0,-10,0,0" Click="btnAddService_Click" />
+        <Button x:Name="btnAddService" Content="Add" Grid.Row="3" Grid.Column="0" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Width="130" Height="30" Margin="0,-10,0,0" Click="btnAddService_Click" IsEnabled="{Binding AllFieldsFilled}" />
         <Button x:Name="btnCancel" Content="Cancel" Grid.Row="3" Grid.Column="1" Foreground="#FFE0B33B" FontFamily="Cooper Black" FontSize="16" Width="130" Height="30" Margin="0,-10,0,0" Click="btnCancel_Click" />
 
     </Grid>

@@ -15,7 +15,9 @@
         public double? Amount { get; set; }
 
         [Required]
-        public string Unit { get; set; }
+        public int UnitId { get; set; }
+
+        public virtual ProductUnit ProductUnit { get; set; }
 
         [Required]
         public double? Price { get; set; }

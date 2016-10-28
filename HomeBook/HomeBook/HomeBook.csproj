@@ -74,12 +74,9 @@
     <Compile Include="AddOperation.xaml.cs">
       <DependentUpon>AddOperation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddService.xaml.cs">
-      <DependentUpon>AddService.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BoolTurnConverter.cs" />
+    <Compile Include="Converters\BoolTurnConverter.cs" />
     <Compile Include="DataAccess\ItemTypes.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Models\BankAccountType.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\BankOperationType.cs" />
@@ -88,10 +85,11 @@
     <Compile Include="Models\OperationProduct.cs" />
     <Compile Include="Models\OperationService.cs" />
     <Compile Include="Models\ProductUnit.cs" />
+    <Compile Include="Models\RequestResult.cs" />
     <Compile Include="Models\SalaryOperationType.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Utility.cs" />
-    <Compile Include="MultiBooleanVisibilityConverter.cs" />
+    <Compile Include="Converters\MultiBooleanVisibilityConverter.cs" />
     <Compile Include="NewItem.xaml.cs">
       <DependentUpon>NewItem.xaml</DependentUpon>
     </Compile>
@@ -119,10 +117,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddOperation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

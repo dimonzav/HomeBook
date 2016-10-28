@@ -16,7 +16,6 @@
 
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -24,15 +23,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Menu x:Name="menu" Height="23" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="_Add operation"></MenuItem>
-                <MenuItem Header="_Add product"></MenuItem>
-                <MenuItem Header="_Export to Excel"></MenuItem>
-            </MenuItem>
-        </Menu>
-
-        <Button x:Name="btnOperations" Content="Operations" Grid.Row="1" Grid.Column="0" Width="140"  Height="100" FontFamily="Cooper Black" FontSize="24" BorderBrush="#FF818181" Foreground="Black" Click="btnOperations_Click">
+       <Button x:Name="btnOperations" Content="Operations" Grid.Row="1" Grid.Column="0" Width="145"  Height="100" FontFamily="Cooper Black" FontSize="24" BorderBrush="#FF818181" Foreground="Black" Click="btnOperations_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
             </Button.Effect>
@@ -45,7 +36,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnReport" Content="Reports" Grid.Row="1" Grid.Column="1" Width="140" Height="100" BorderBrush="#FF785A5A" Foreground="Black" FontSize="24" FontFamily="Cooper Black" Click="btnReport_Click">
+        <Button x:Name="btnReport" Content="Reports" Grid.Row="1" Grid.Column="1" Width="145" Height="100" BorderBrush="#FF785A5A" Foreground="Black" FontSize="24" FontFamily="Cooper Black" Click="btnReport_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
             </Button.Effect>
@@ -58,7 +49,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btnProduct" Content="Settings" Grid.Row="1" Grid.Column="2" Width="140" Height="100" FontFamily="Cooper Black" FontSize="24" OpacityMask="Black" Click="btnProduct_Click">
+        <Button x:Name="btnProduct" Content="Settings" Grid.Row="1" Grid.Column="2" Width="145" Height="100" FontFamily="Cooper Black" FontSize="24" OpacityMask="Black" Click="btnProduct_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="15" Color="#FF878989"/>
             </Button.Effect>

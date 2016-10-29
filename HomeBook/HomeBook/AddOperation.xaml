@@ -52,7 +52,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="label4" Content="Total" Visibility="{Binding IsProductOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" Margin="46,10,0,0" Grid.Column="1"/>
-        <TextBox x:Name="tbSum" Grid.Row="4" Grid.Column="1" Text="{Binding Sum}" Visibility="{Binding IsProductOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Height="25" TextWrapping="Wrap" Width="225" FontFamily="Cooper Black" FontWeight="Bold" Margin="0,20,10,0"/>
+        <TextBox x:Name="tbSum" Grid.Row="4" Grid.Column="1" Text="{Binding Sum}" Visibility="{Binding IsProductOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Height="25" TextWrapping="Wrap" Width="225" FontFamily="Cooper Black" FontWeight="Bold" Margin="0,20,10,0" IsReadOnly="True" />
 
         <Label x:Name="forSalaryType" Content="Operation type" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Foreground="#FFE0B030" FontSize="16" FontFamily="Cooper Black" Margin="50,10,0,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <ComboBox x:Name="cbSalaryType" Grid.Row="2" Grid.Column="0" Width="150" Height="25" HorizontalAlignment="Left" Margin="50,30,0,0" Visibility="{Binding IsSalary, Converter={StaticResource BooleanToVisibilityConverter}}" SelectedIndex="{Binding SalaryOperationTypeId}" />
@@ -79,7 +79,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="forServicesSum" Content="Total" Grid.Row="4" Visibility="{Binding IsServiceOperations, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" Margin="46,10,0,0" Grid.Column="1"/>
-        <TextBox x:Name="tbServicesSum" Grid.Row="4" Grid.Column="1" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding IsServiceOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Height="25" TextWrapping="Wrap" Width="225" FontFamily="Cooper Black" FontWeight="Bold" Margin="0,20,10,0"/>
+        <TextBox x:Name="tbServicesSum" Grid.Row="4" Grid.Column="1" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding IsServiceOperations, Converter={StaticResource BooleanToVisibilityConverter}}" Height="25" TextWrapping="Wrap" Width="225" FontFamily="Cooper Black" FontWeight="Bold" Margin="0,20,10,0" IsReadOnly="True" />
 
         <Label x:Name="forUtilities" Content="Select utility" Visibility="{Binding IsUtilities, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="2" Grid.Column="0" Foreground="#FFEEBB33" FontFamily="Cooper Black" FontSize="16" HorizontalAlignment="Left" Margin="50,10,0,0" />
         <ComboBox x:Name="cbUtilities" Grid.Row="2" Grid.Column="0" Visibility="{Binding IsUtilities, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Height="25" Margin="0,20,0,0" SelectedIndex="{Binding UtilityId}" SelectedItem="{Binding Utility}" />

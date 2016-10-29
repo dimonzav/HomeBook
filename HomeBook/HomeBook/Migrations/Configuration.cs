@@ -74,7 +74,7 @@ namespace HomeBook.Migrations
             List<SalaryOperationType> types = new List<SalaryOperationType>
             {
                 new SalaryOperationType { SalaryOperationTypeId = 1, Name = "Enrollment" },
-                new SalaryOperationType { SalaryOperationTypeId = 2, Name = "Widthdrawal" }
+                new SalaryOperationType { SalaryOperationTypeId = 2, Name = "Withdrawal" }
             };
 
             return types.ToArray();
